@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>lazyimage</title>
+<style>
+.lazyimage [lazyimage-background-image],
+  .lazyimage [lazyimage-src] {
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  .lazyimage [lazyimage-loaded="true"] {
+    opacity: 1;
+  }
+
+  .spacer {
+    min-height: 100vh;
+  }
+</style>
+<script src="../dist/js/lazyimage.bundle.js"></script>
+</head>
+<body>
+<h1>lazyimage</h1>
+<p>(scroll down)</p>
+<div class="spacer"></div>
+<div class="lazyimage">
+<h2>lazyimage with img lazyimage-src</h2>
+<img lazyimage-src="https://lh3.googleusercontent.com/UaV_YUOch1HJBQ0UhA7xKY5B8sDvTUVEeuZ6yNMxXa2S67TGubGL34X9hECVN6hvK84NLKQfmFbb9jX3S8w=pp-s460">
+<h2>lazyimage with div lazyimage-background-image</h2>
+<div style="width: 200px; height: 200px; background-size: cover" lazyimage-background-image="https://lh3.googleusercontent.com/qbXuwPuwwfoETse9LsMRbxYDOt3iaiHZkoTGwMhDsgCsMgk-wYcWqDdzjckMwFdI8Ck9dfCM63k5vL1tWoKy=pp-s460"></div>
+</div>
+<div class="spacer"></div>
+<pre><code>import Registry from '../component/registry';
+import LazyImageComponent from '../lazyimage/lazyimagecomponent';
+
+
+const app = new Registry();
+app.register('lazyimage', LazyImageComponent, {
+  inviewClass: 'lazyimage--visible',
+  loadedClass: 'lazyimage--loaded',
+});
+document.addEventListener('DOMContentLoaded', () => {
+  app.run();
+});
+</code></pre>
+</body>
+</html>
