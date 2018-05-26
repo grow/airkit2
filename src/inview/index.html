@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}inview{% endblock %}
+
+{% block styles %}
+<style>
+  .inview {
+    background-color: red;
+    color: white;
+    padding: 100px 40px;
+    text-align: center;
+    transition: background-color 1s ease;
+  }
+  .inview--visible {
+    background-color: blue;
+  }
+
+  .spacer {
+    min-height: 100vh;
+  }
+</style>
+{% endblock %}
+
+{% block head_scripts %}
+<script src="/dist/js/inview.bundle.js"></script>
+{% endblock %}
+
+{% block main %}
+<h1>inview</h1>
+<p>(scroll down)</p>
+
+<div class="spacer"></div>
+<div class="inview">
+  This should change from red to blue when the element is inview.
+</div>
+<div class="spacer"></div>
+{{macros.source_code('inview/inview.example.js')}}
+{% endblock %}
