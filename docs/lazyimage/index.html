@@ -15,7 +15,7 @@
   opacity: 0;
   transition: opacity 5s ease;
 }
-.lazyimage [lazyimage-loaded="true"] {
+.lazyimage [lazyimage-loaded=&quot;true&quot;] {
   opacity: 1;
 }
 
@@ -88,7 +88,7 @@
 </div>
 <div class="spacer"></div>
 <h3>HTML</h3>
-<pre><code>&lt;div class=&quot;spacer&quot;&gt;&lt;/div&gt;
+<pre><code class="html">&lt;div class=&quot;spacer&quot;&gt;&lt;/div&gt;
 
 &lt;div class=&quot;lazyimage&quot;&gt;
   &lt;h2&gt;lazyimage using img lazyimage-src&lt;/h2&gt;
@@ -99,6 +99,19 @@
 &lt;/div&gt;
 
 &lt;div class=&quot;spacer&quot;&gt;&lt;/div&gt;</code></pre>
+<h3>CSS</h3>
+<pre><code class="css">.lazyimage [lazyimage-background-image],
+.lazyimage [lazyimage-src] {
+  opacity: 0;
+  transition: opacity 5s ease;
+}
+.lazyimage [lazyimage-loaded=&quot;true&quot;] {
+  opacity: 1;
+}
+
+.spacer {
+  min-height: 80vh;
+}</code></pre>
 <h3>JavaScript</h3>
 <pre><code class="js">import Registry from &#39;airkit2/component/registry&#39;;
 import LazyImageComponent from &#39;airkit2/lazyimage/lazyimagecomponent&#39;;

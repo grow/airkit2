@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/airkit2/dist/css/docs/docs.min.css?c=565bc7fc958a34d941c3bd63f0aa63c0">
 <style>
 .inview {
-  background-color: #BA2121;
+  background-color: #ba2121;
   color: white;
   padding: 100px 40px;
   text-align: center;
@@ -88,6 +88,21 @@ This should change from red to blue when the element is inview.
 &lt;/div&gt;
 
 &lt;div class=&quot;spacer&quot;&gt;&lt;/div&gt;</code></pre>
+<h3>CSS</h3>
+<pre><code class="css">.inview {
+  background-color: #ba2121;
+  color: white;
+  padding: 100px 40px;
+  text-align: center;
+  transition: background-color 1s ease;
+}
+.inview--visible {
+  background-color: #428bca;
+}
+
+.spacer {
+  min-height: 100vh;
+}</code></pre>
 <h3>JavaScript</h3>
 <pre><code class="js">import Registry from &#39;airkit2/component/registry&#39;;
 import InviewComponent from &#39;airkit2/inview/inviewcomponent&#39;;

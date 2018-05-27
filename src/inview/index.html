@@ -2,10 +2,9 @@
 
 {% block title %}Airkit2 - InviewComponent{% endblock %}
 
-{% block styles %}
-<style>
+{% set css %}
 .inview {
-  background-color: #BA2121;
+  background-color: #ba2121;
   color: white;
   padding: 100px 40px;
   text-align: center;
@@ -18,6 +17,11 @@
 .spacer {
   min-height: 100vh;
 }
+{% endset %}
+
+{% block styles %}
+<style>
+{{css}}
 </style>
 {% endblock %}
 
@@ -67,6 +71,9 @@
 
 <h3>HTML</h3>
 <pre><code class="html">{{example.trim()}}</code></pre>
+
+<h3>CSS</h3>
+<pre><code class="css">{{css.trim()}}</code></pre>
 
 <h3>JavaScript</h3>
 {{macros.source_code('inview/inview.example.js')}}
