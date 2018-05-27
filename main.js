@@ -139,6 +139,7 @@ function normalizeHtml(html) {
   let output = htmlMinifier.minify(html, {
     collapseWhitespace: true,
     preserveLineBreaks: true,
+    removeComments: true,
   }).trim();
 
   return new nunjucks.runtime.SafeString(output);
