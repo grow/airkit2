@@ -74,6 +74,9 @@ function runBuild(argv) {
   // Create the directory.
   utils.mkdirp(outdir);
 
+  // Add .nojekyll for GitHub Pages.
+  utils.touch(path.join(outdir, '.nojekyll'));
+
   // Copy static files from dist/.
   utils.listFiles(DIST_PATH)
       .forEach((filepath) => {

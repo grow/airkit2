@@ -50,8 +50,18 @@ function rmdir(dirpath) {
 }
 
 
+/**
+ * Touches a file.
+ * @param {string} filepath
+ */
+function touch(filepath) {
+  fs.closeSync(fs.openSync(filepath, 'w'));
+}
+
+
 module.exports = {
   listFiles: listFiles,
   mkdirp: mkdirp,
   rmdir: rmdir,
+  touch: touch,
 };
