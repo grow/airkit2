@@ -10,6 +10,7 @@ const utils = require('./utils');
 
 
 const DIST_PATH = 'dist/';
+const STATIC_PATH = 'static/';
 const TEMPLATES_PATH = 'src/';
 
 const NUNJUCKS_LOADER = new nunjucks.FileSystemLoader(TEMPLATES_PATH, {
@@ -29,6 +30,7 @@ function runDev(argv) {
   NUNJUCKS_ENV.express(app);
 
   app.use('/airkit2/dist/', express.static(DIST_PATH));
+  app.use('/airkit2/static/', express.static(STATIC_PATH));
 
   app.use('/airkit2/', function(req, res, next) {
     if (req.method !== 'GET') {
@@ -80,6 +82,20 @@ function runBuild(argv) {
 
   // Copy static files from dist/.
   utils.listFiles(DIST_PATH)
+      .forEach((filepath) => {
+        const outpath = path.join(outdir, filepath);
+
+        const parentdir = path.dirname(outpath);
+        if (!fs.existsSync(parentdir)) {
+          utils.mkdirp(parentdir);
+        }
+
+        fs.copyFileSync(filepath, outpath);
+        console.log(`saved ${outpath}`);
+      });
+
+  // Copy static files from static/.
+  utils.listFiles(STATIC_PATH)
       .forEach((filepath) => {
         const outpath = path.join(outdir, filepath);
 
