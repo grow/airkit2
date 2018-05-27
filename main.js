@@ -16,6 +16,7 @@ const NUNJUCKS_LOADER = new nunjucks.FileSystemLoader(TEMPLATES_PATH, {
   watch: true,
 });
 const NUNJUCKS_ENV = new nunjucks.Environment(NUNJUCKS_LOADER);
+NUNJUCKS_ENV.addFilter('fingerprint_js', fingerprintJs);
 NUNJUCKS_ENV.addFilter('normalize_html', normalizeHtml);
 
 
@@ -114,7 +115,7 @@ function runBuild(argv) {
 
 
 /**
- * Normalizes HTML.
+ * Nunjucks filter to normalizes HTML.
  * @param {string} html
  * @return {string}
  */
@@ -125,6 +126,18 @@ function normalizeHtml(html) {
   }).trim();
 
   return new nunjucks.runtime.SafeString(output);
+}
+
+
+/**
+ * Nunjucks filter to get the fingerprint (hash) of a JS file.
+ * @param {string} name The name of the bundle, from [name].bundle.js.
+ * @return {string}
+ */
+function fingerprintJs(name) {
+  const filepath = path.join(DIST_PATH, 'js', `${name}.bundle.js`);
+  const data = fs.readFileSync(filepath);
+  return utils.checksum(data);
 }
 
 

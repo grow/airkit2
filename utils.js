@@ -1,6 +1,21 @@
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const mkdirplib = require('mkdirp');
+
+
+/**
+ * Returns the hash of a string.
+ * @param {string} str
+ * @param {string} algorithm
+ * @param {string} encoding
+ */
+function checksum(str, algorithm, encoding) {
+  return crypto
+      .createHash(algorithm || 'md5')
+      .update(str, 'utf8')
+      .digest(encoding || 'hex');
+}
 
 
 /**
@@ -60,6 +75,7 @@ function touch(filepath) {
 
 
 module.exports = {
+  checksum: checksum,
   listFiles: listFiles,
   mkdirp: mkdirp,
   rmdir: rmdir,
