@@ -1,0 +1,12 @@
+{% macro script_tag(name) %}
+<script src="/airkit2/dist/js/{{name}}/{{name}}.min.js?c={{name|fingerprint('js')}}"></script>
+{% endmacro %}
+
+{% macro source_code(path) %}
+{% set code %}{% include path %}{% endset %}
+<pre><code class="js">{{code|replace("from '..", "from 'airkit2")}}</code></pre>
+{% endmacro %}
+
+{% macro style_tag(name) %}
+<link rel="stylesheet" href="/airkit2/dist/css/{{name}}/{{name}}.min.css?c={{name|fingerprint('css')}}"></link>
+{% endmacro %}

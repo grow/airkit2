@@ -2,44 +2,92 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>inview</title>
+<title>Airkit2 - InviewComponent</title>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<style>
+.hljs{display:block;background:#fafafa;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
+</style>
+<link rel="stylesheet" href="/airkit2/dist/css/docs/docs.min.css?c=c6af7fd7aa3beb7eb44776e2d5bc148d">
 <style>
 .inview {
-    background-color: red;
-    color: white;
-    padding: 100px 40px;
-    text-align: center;
-    transition: background-color 1s ease;
-  }
-  .inview--visible {
-    background-color: blue;
-  }
+  background-color: #BA2121;
+  color: white;
+  padding: 100px 40px;
+  text-align: center;
+  transition: background-color 1s ease;
+}
+.inview--visible {
+  background-color: #428bca;
+}
 
-  .spacer {
-    min-height: 100vh;
-  }
+.spacer {
+  min-height: 100vh;
+}
 </style>
-<script src="../dist/js/inview.bundle.js?c=f6d9be3dc625cc07fb9ebd37761594d4"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="/airkit2/dist/js/inview/inview.min.js?c=f6d9be3dc625cc07fb9ebd37761594d4"></script>
 </head>
 <body>
-<h1>inview</h1>
+<div class="page">
+<div class="page__header">
+<div class="header">
+<div class="header__logo"><a href="/airkit2/">Airkit</a></div>
+</div>
+</div>
+<div class="page__wrap">
+<div class="page__sidebar">
+<div class="sidebar">
+<h2>Documentation</h2>
+<ul>
+<li>Foo</li>
+<li>Bar</li>
+</ul>
+<h2>Components</h2>
+<ul>
+<li><a href="/airkit2/inview/">InviewComponent</a></li>
+<li><a href="/airkit2/lazyimage/">LazyImageComponent</a></li>
+</ul>
+</div>
+</div>
+<div class="page__main">
+<h1>InviewComponent</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h2>Example</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 <p>(scroll down)</p>
 <div class="spacer"></div>
 <div class="inview">
 This should change from red to blue when the element is inview.
 </div>
 <div class="spacer"></div>
-<pre><code>import Registry from '../component/registry';
-import InviewComponent from '../inview/inviewcomponent';
+<h3>HTML</h3>
+<pre><code class="html">&lt;div class=&quot;spacer&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;inview&quot;&gt;
+  This should change from red to blue when the element is inview.
+&lt;/div&gt;
+
+&lt;div class=&quot;spacer&quot;&gt;&lt;/div&gt;</code></pre>
+<h3>JavaScript</h3>
+<pre><code class="js">import Registry from &#39;airkit2/component/registry&#39;;
+import InviewComponent from &#39;airkit2/inview/inviewcomponent&#39;;
 
 
 const app = new Registry();
-app.register('inview', InviewComponent, {
-  inviewClass: 'inview--visible',
+app.register(&#39;inview&#39;, InviewComponent, {
+  inviewClass: &#39;inview--visible&#39;,
 });
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener(&#39;DOMContentLoaded&#39;, () =&gt; {
   app.run();
 });
 </code></pre>
+</div>
+</div><!-- page__wrap -->
+<div class="page__footer">
+<div class="footer">
+</div>
+</div>
+</div><!-- page -->
+<script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

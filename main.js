@@ -16,7 +16,7 @@ const NUNJUCKS_LOADER = new nunjucks.FileSystemLoader(TEMPLATES_PATH, {
   watch: true,
 });
 const NUNJUCKS_ENV = new nunjucks.Environment(NUNJUCKS_LOADER);
-NUNJUCKS_ENV.addFilter('fingerprint_js', fingerprintJs);
+NUNJUCKS_ENV.addFilter('fingerprint', fingerprint);
 NUNJUCKS_ENV.addFilter('normalize_html', normalizeHtml);
 
 
@@ -28,9 +28,9 @@ function runDev(argv) {
   const app = express();
   NUNJUCKS_ENV.express(app);
 
-  app.use('/dist/', express.static(DIST_PATH));
+  app.use('/airkit2/dist/', express.static(DIST_PATH));
 
-  app.use('/', function(req, res, next) {
+  app.use('/airkit2/', function(req, res, next) {
     if (req.method !== 'GET') {
       return next();
     }
@@ -54,7 +54,7 @@ function runDev(argv) {
   });
 
   const port = argv.port;
-  console.log(`starting dev server at http://localhost:${port}`);
+  console.log(`starting dev server at http://localhost:${port}/airkit2/`);
   app.listen(port);
 }
 
@@ -130,12 +130,13 @@ function normalizeHtml(html) {
 
 
 /**
- * Nunjucks filter to get the fingerprint (hash) of a JS file.
+ * Nunjucks filter to get the fingerprint (hash) of a dist/ file.
  * @param {string} name The name of the bundle, from [name].bundle.js.
+ * @param {string} type
  * @return {string}
  */
-function fingerprintJs(name) {
-  const filepath = path.join(DIST_PATH, 'js', `${name}.bundle.js`);
+function fingerprint(name, type) {
+  const filepath = path.join(DIST_PATH, type, name, `${name}.min.${type}`);
   const data = fs.readFileSync(filepath);
   return utils.checksum(data);
 }

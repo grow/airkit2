@@ -1,47 +1,58 @@
+{% filter normalize_html %}
+{% import "docs/macros.html" as macros %}
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Airkit2</title>
+<title>{% block title %}{% endblock %}</title>
+{% block stylesheets %}
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 <style>
 .hljs{display:block;background:#fafafa;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
 </style>
-<link rel="stylesheet" href="/airkit2/dist/css/docs/docs.min.css?c=c6af7fd7aa3beb7eb44776e2d5bc148d">
+{{macros.style_tag('docs')}}
+{% endblock %}
+{% block styles %}{% endblock %}
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+{% block head_scripts %}
+{% endblock %}
 </head>
 <body>
+{% block body %}
+
 <div class="page">
+
 <div class="page__header">
-<div class="header">
-<div class="header__logo"><a href="/airkit2/">Airkit</a></div>
+{% block header %}
+{% include "docs/header.html" %}
+{% endblock %}
 </div>
-</div>
+
 <div class="page__wrap">
+
 <div class="page__sidebar">
-<div class="sidebar">
-<h2>Documentation</h2>
-<ul>
-<li>Foo</li>
-<li>Bar</li>
-</ul>
-<h2>Components</h2>
-<ul>
-<li><a href="/airkit2/inview/">InviewComponent</a></li>
-<li><a href="/airkit2/lazyimage/">LazyImageComponent</a></li>
-</ul>
+{% block sidebar %}
+{% include "docs/sidebar.html" %}
+{% endblock %}
 </div>
-</div>
+
 <div class="page__main">
-<h1>Welcome to Airkit2</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+{% block main %}{% endblock %}
 </div>
-</div><!-- page__wrap -->
+
+</div> <!-- page__wrap -->
+
 <div class="page__footer">
-<div class="footer">
+{% block footer %}
+{% include "docs/footer.html" %}
+{% endblock %}
 </div>
-</div>
-</div><!-- page -->
+
+</div> <!-- page -->
+
 <script>hljs.initHighlightingOnLoad();</script>
+{% block body_scripts %}{% endblock %}
+{% endblock %}
 </body>
 </html>
+{% endfilter %}

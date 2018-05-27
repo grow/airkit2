@@ -9,6 +9,7 @@ const mkdirplib = require('mkdirp');
  * @param {string} str
  * @param {string} algorithm
  * @param {string} encoding
+ * @return {string}
  */
 function checksum(str, algorithm, encoding) {
   return crypto

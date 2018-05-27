@@ -1,7 +1,0 @@
-{% macro script_tag(name) %}
-<script src="../dist/js/{{name}}.bundle.js?c={{name|fingerprint_js}}"></script>
-{% endmacro %}
-
-{% macro source_code(path) %}
-<pre><code>{% include path %}</code></pre>
-{% endmacro %}

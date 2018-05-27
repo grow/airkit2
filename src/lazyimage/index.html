@@ -1,21 +1,21 @@
-{% extends "base.html" %}
+{% extends "docs/base.html" %}
 
-{% block title %}lazyimage{% endblock %}
+{% block title %}Airkit2 - LazyImageComponent{% endblock %}
 
 {% block styles %}
 <style>
-  .lazyimage [lazyimage-background-image],
-  .lazyimage [lazyimage-src] {
-    opacity: 0;
-    transition: opacity 1s ease;
-  }
-  .lazyimage [lazyimage-loaded="true"] {
-    opacity: 1;
-  }
+.lazyimage [lazyimage-background-image],
+.lazyimage [lazyimage-src] {
+  opacity: 0;
+  transition: opacity 5s ease;
+}
+.lazyimage [lazyimage-loaded="true"] {
+  opacity: 1;
+}
 
-  .spacer {
-    min-height: 100vh;
-  }
+.spacer {
+  min-height: 80vh;
+}
 </style>
 {% endblock %}
 
@@ -24,17 +24,32 @@
 {% endblock %}
 
 {% block main %}
-<h1>lazyimage</h1>
+<h1>LazyImageComponent</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<h2>Example</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 <p>(scroll down)</p>
 
+{% set example %}
 <div class="spacer"></div>
-<div class="lazyimage">
-  <h2>lazyimage with img lazyimage-src</h2>
-  <img lazyimage-src="https://lh3.googleusercontent.com/UaV_YUOch1HJBQ0UhA7xKY5B8sDvTUVEeuZ6yNMxXa2S67TGubGL34X9hECVN6hvK84NLKQfmFbb9jX3S8w=pp-s460">
 
-  <h2>lazyimage with div lazyimage-background-image</h2>
-  <div style="width: 200px; height: 200px; background-size: cover" lazyimage-background-image="https://lh3.googleusercontent.com/qbXuwPuwwfoETse9LsMRbxYDOt3iaiHZkoTGwMhDsgCsMgk-wYcWqDdzjckMwFdI8Ck9dfCM63k5vL1tWoKy=pp-s460"></div>
+<div class="lazyimage">
+  <h2>lazyimage using img lazyimage-src</h2>
+  <img style="width: 400px; height: 400px" lazyimage-src="https://lh3.googleusercontent.com/dmQfcAxbbvf-_tM_gKPX4z07wl2YqG3qwAoioszQFa4izxL66B7FGXE3qRvLuBFGW8zu16ya6EKmbUePU9Qj=pp-s460">
+
+  <h2>lazyimage using div lazyimage-background-image</h2>
+  <div style="width: 400px; height: 400px; background-size: cover" lazyimage-background-image="https://lh3.googleusercontent.com/qbXuwPuwwfoETse9LsMRbxYDOt3iaiHZkoTGwMhDsgCsMgk-wYcWqDdzjckMwFdI8Ck9dfCM63k5vL1tWoKy=pp-s460"></div>
 </div>
+
 <div class="spacer"></div>
+{% endset %}
+
+{{example|safe}}
+
+<h3>HTML</h3>
+<pre><code>{{example.trim()}}</code></pre>
+
+<h3>JavaScript</h3>
 {{macros.source_code('lazyimage/lazyimage.example.js')}}
 {% endblock %}
