@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Airkit2</title>
+<title>Airkit2 - breakpoints</title>
 <link rel="shortcut icon" href="/airkit2/static/images/favicon.png">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 <style>
@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/airkit2/dist/css/docs/docs.min.css?c=565bc7fc958a34d941c3bd63f0aa63c0">
 <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="/airkit2/dist/css/breakpoints/breakpoints.example.min.css?c=03d796b0272148e7c1b733776d465b12">
 </head>
 <body>
 <div class="page">
@@ -39,8 +40,24 @@
 </div>
 </div>
 <div class="page__main">
-<h1>Welcome to Airkit2</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h1>breakpoints</h1>
+<p>Box below should be red on mobile, green on laptop, and blue on desktop.</p>
+<div class="foo"></div>
+<h3>HTML</h3>
+<pre><code class="html">&lt;div class=&quot;foo&quot;&gt;&lt;/div&gt;</code></pre>
+<h3>SASS</h3>
+<pre><code class="css">@import &#39;mixins&#39;
+
+.foo
+  height: 400px
+  width: 400px
+
+  background-color: red
+  +md
+    background-color: green
+  +xl
+    background-color: blue
+</code></pre>
 </div>
 </div>
 <div class="page__footer">

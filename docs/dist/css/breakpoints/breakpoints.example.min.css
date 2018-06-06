@@ -1,0 +1,1 @@
+.foo{height:400px;width:400px;background-color:red}@media (min-width: 718px){.foo{background-color:green}}@media (min-width: 1292px){.foo{background-color:blue}}
