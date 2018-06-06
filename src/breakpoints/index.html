@@ -1,0 +1,24 @@
+{% extends "docs/base.html" %}
+
+{% block title %}Airkit2 - breakpoints{% endblock %}
+
+{% block head_scripts %}
+{{macros.style_tag('breakpoints/breakpoints.example.min.css')}}
+{% endblock %}
+
+{% block main %}
+<h1>breakpoints</h1>
+<p>Box below should be red on mobile, green on laptop, and blue on desktop.</p>
+
+{% set example %}
+<div class="foo"></div>
+{% endset %}
+
+{{example|safe}}
+
+<h3>HTML</h3>
+<pre><code class="html">{{example.trim()}}</code></pre>
+
+<h3>SASS</h3>
+{{macros.source_code('breakpoints/breakpoints.example.sass')}}
+{% endblock %}

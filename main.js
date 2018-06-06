@@ -148,12 +148,12 @@ function normalizeHtml(html) {
 
 /**
  * Nunjucks filter to get the fingerprint (hash) of a dist/ file.
- * @param {string} name The name of the bundle, from [name].bundle.js.
- * @param {string} type
+ * @param {string} relpath
  * @return {string}
  */
-function fingerprint(name, type) {
-  const filepath = path.join(DIST_PATH, type, name, `${name}.min.${type}`);
+function fingerprint(relpath) {
+  const type = path.extname(relpath).slice(1);
+  const filepath = path.join(DIST_PATH, type, relpath);
   const data = fs.readFileSync(filepath);
   return utils.checksum(data);
 }

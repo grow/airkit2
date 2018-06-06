@@ -1,0 +1,41 @@
+$breakpoint-xs: 374px !default
+$breakpoint-sm: 480px !default
+$breakpoint-md: 718px !default
+$breakpoint-lg: 1024px !default
+$breakpoint-xl: 1292px !default
+$breakpoint-map: ( xs: $breakpoint-xs, sm: $breakpoint-sm, md: $breakpoint-md, lg: $breakpoint-lg, xl: $breakpoint-xl ) !default
+
+
+=gt($size)
+  $width: $size
+  @if map_has_key($breakpoint-map, $size)
+    $width: map-get($breakpoint-map, $size)
+
+  @media (min-width: $width)
+    @content
+
+
+=lt($size)
+  $width: $size
+  @if map_has_key($breakpoint-map, $size)
+    $width: map-get($breakpoint-map, $size)
+
+  @media (max-width: $width)
+    @content
+
+
+=xs
+  +gt(xs)
+    @content
+=sm
+  +gt(sm)
+    @content
+=md
+  +gt(md)
+    @content
+=lg
+  +gt(lg)
+    @content
+=xl
+  +gt(xl)
+    @content

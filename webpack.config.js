@@ -42,6 +42,6 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './dist/js/'),
-    filename: '[name]/[name].min.js',
+    filename: '[name]/[name].example.min.js',
   },
 };
