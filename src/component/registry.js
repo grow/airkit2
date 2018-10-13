@@ -128,9 +128,9 @@ class ComponentHandler {
     for (let i = 0, element; element = this.nodeList[i]; i++) {
       if (!element.akId) {
         const component = new this.componentCtor(element, this.options);
-        component.init();
         element.akId = this.nextId_++;
         element.component = component;
+        component.init();
         this.components[element.akId] = component;
       }
       activeElements.add(element.akId);
@@ -164,9 +164,9 @@ class ComponentHandler {
    */
   destroyComponent_(component) {
     delete this.components[component.element.akId];
-    component.destroy();
     component.element.akId = null;
     component.element.akComponent = null;
+    component.destroy();
   }
 }
 
