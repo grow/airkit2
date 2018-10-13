@@ -158,10 +158,14 @@ export class LazyImageComponent extends InviewComponent {
   formatSrc_(el, src) {
     return src.replace(/\{[a-z]*\}/g, (placeholder) => {
       if (placeholder == '{width}') {
-        return Math.ceil(el.offsetWidth * window.devicePixelRatio);
-      }
-      if (placeholder == '{height}') {
-        return Math.ceil(el.offsetHeight * window.devicePixelRatio);
+        // If the loaded image's width is greater than the resized image width,
+        // use the larger width that's already loaded to avoid unneccessary
+        // re-loads.
+        const loadedWidth = el.akLazyImageLoadedWidth || 0;
+        const imageWidth = Math.ceil(el.offsetWidth * window.devicePixelRatio);
+        const requestedWidth = Math.max(loadedWidth, imageWidth);
+        el.akLazyImageLoadedWidth = requestedWidth;
+        return Math.max(loadedWidth, imageWidth);
       }
       return placeholder;
     });
