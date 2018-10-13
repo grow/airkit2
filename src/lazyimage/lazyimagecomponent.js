@@ -1,5 +1,6 @@
-import ImageLoader from './imageloader';
-import InviewComponent from '../inview/inviewcomponent';
+import {ImageLoader} from './imageloader';
+import {InviewComponent} from '../inview/inviewcomponent';
+import {debounce} from '../utils/debounce';
 
 
 /**
@@ -18,12 +19,23 @@ export class LazyImageComponent extends InviewComponent {
 
     /** @type {boolean} */
     this.loaded = false;
+
+    /** @type {function} */
+    this.resizeListener_ = null;
+  }
+
+  /** @override */
+  init() {
+    this.resizeListener_ = debounce(() => this.onResize_(), 500);
+    window.addEventListener('resize', this.resizeListener_);
+    super.init();
   }
 
   /** @override */
   destroy() {
-    super.destroy();
+    window.removeEventListener('resize', this.resizeListener_);
     this.imageLoader = null;
+    super.destroy();
   }
 
   /** @override */
@@ -36,41 +48,34 @@ export class LazyImageComponent extends InviewComponent {
   }
 
   /**
+   * Handles window resize events.
+   */
+  onResize_() {
+    this.loaded = false;
+
+    // Reload any images that are already loaded, in case the src changed.
+    this.getImgElements_()
+        .filter((el) => this.isImageLoaded_(el))
+        .forEach((el) => this.loadImgElement_(el));
+    this.getBackgroundImageElements_()
+        .filter((el) => this.isImageLoaded_(el))
+        .forEach((el) => this.loadBackgroundImageElement_(el));
+  }
+
+  /**
    * Loads all images with lazyimage-src or lazyimage-background-image attrs.
    * @private
    */
   loadImages_() {
     this.loading = true;
 
-    const imgEls = [].slice.call(
-        this.element.querySelectorAll('[lazyimage-src]'));
-    if (this.element.hasAttribute('lazyimage-src')) {
-      imgEls.push(this.element);
-    }
-    imgEls
+    this.getImgElements_()
         .filter((el) => this.isElementVisisble_(el) && !this.isImageLoaded_(el))
-        .forEach((el) => {
-          const src = el.getAttribute('lazyimage-src');
-          this.imageLoader.load(src).then((loadedSrc) => {
-            el.src = loadedSrc;
-            el.setAttribute('lazyimage-loaded', 'true');
-          });
-        });
+        .forEach((el) => this.loadImgElement_(el));
 
-    const bgEls = [].slice.call(
-        this.element.querySelectorAll('[lazyimage-background-image]'));
-    if (this.element.hasAttribute('lazyimage-background-image')) {
-      bgEls.push(this.element);
-    }
-    bgEls
+    this.getBackgroundImageElements_()
         .filter((el) => this.isElementVisisble_(el) && !this.isImageLoaded_(el))
-        .forEach((el) => {
-          const src = el.getAttribute('lazyimage-background-image');
-          this.imageLoader.load(src).then((loadedSrc) => {
-            el.style.backgroundImage = `url(${loadedSrc})`;
-            el.setAttribute('lazyimage-loaded', 'true');
-          });
-        });
+        .forEach((el) => this.loadBackgroundImageElement_(el));
 
     this.imageLoader.wait().then(() => {
       this.loading = false;
@@ -84,23 +89,114 @@ export class LazyImageComponent extends InviewComponent {
   }
 
   /**
+   * Returns all elements with the `lazyimage-src` attribute.
+   * @return {Array.<Element>}
+   */
+  getImgElements_() {
+    const imgEls = [].slice.call(
+        this.element.querySelectorAll('[lazyimage-src]'));
+    if (this.element.hasAttribute('lazyimage-src')) {
+      imgEls.push(this.element);
+    }
+    return imgEls;
+  }
+
+  /**
+   * Loads the image for a `lazyimage-src` element.
+   * @param {*} el
+   */
+  loadImgElement_(el) {
+    const src = el.getAttribute('lazyimage-src');
+    const imageUrl = this.formatSrc_(el, src);
+    if (el.src === imageUrl) {
+      this.setImageLoaded_(el, true);
+      return;
+    }
+    this.imageLoader.load(imageUrl).then(() => {
+      el.src = imageUrl;
+      this.setImageLoaded_(el, true);
+    });
+  }
+
+  /**
+   * Returns all elements with the `lazyimage-background-image` attribute.
+   * @return {Array.<Element>}
+   */
+  getBackgroundImageElements_() {
+    const bgEls = [].slice.call(
+        this.element.querySelectorAll('[lazyimage-background-image]'));
+    if (this.element.hasAttribute('lazyimage-background-image')) {
+      bgEls.push(this.element);
+    }
+    return bgEls;
+  }
+
+  /**
+   * Loads the image for an `lazyimage-background-image` element.
+   * @param {Element} el
+   */
+  loadBackgroundImageElement_(el) {
+    const src = el.getAttribute('lazyimage-background-image');
+    const imageUrl = this.formatSrc_(el, src);
+    const backgroundImage = `url(${imageUrl})`;
+    if (el.style.backgroundImage === backgroundImage) {
+      this.setImageLoaded_(el, true);
+      return;
+    }
+    this.imageLoader.load(imageUrl).then(() => {
+      el.style.backgroundImage = `url(${imageUrl})`;
+      this.setImageLoaded_(el, true);
+    });
+  }
+
+  /**
+   * Formats the src URL, replacing any `{placeholder}`s.
+   * @param {Element} el The lazyimage element.
+   * @param {string} src The lazyimage URL to format.
+   * @return {string} The formatted image URL.
+   */
+  formatSrc_(el, src) {
+    return src.replace(/\{[a-z]*\}/g, (placeholder) => {
+      if (placeholder == '{width}') {
+        return Math.ceil(el.offsetWidth * window.devicePixelRatio);
+      }
+      if (placeholder == '{height}') {
+        return Math.ceil(el.offsetHeight * window.devicePixelRatio);
+      }
+      return placeholder;
+    });
+  }
+
+  /**
    * Returns `true` if the image is loaded.
-   * @param {Element} element
+   * @param {Element} el
    * @return {boolean}
    * @private
    */
-  isImageLoaded_(element) {
-    return element.getAttribute('lazyimage-loaded') === 'true';
+  isImageLoaded_(el) {
+    return !!el.akLazyImageLoaded;
+  }
+
+  /**
+   * Sets whether the image has been loaded for an element.
+   * @param {Element} el
+   * @param {boolean} loaded
+   */
+  setImageLoaded_(el, loaded) {
+    el.akLazyImageLoaded = loaded;
+    if (loaded) {
+      el.setAttribute('lazyimage-loaded', 'true');
+    }
   }
 
   /**
    * Returns `true` if the element isn't `display: none`.
-   * @param {Element} element
+   * @param {Element} el
    * @return {boolean}
    * @private
    */
-  isElementVisisble_(element) {
-    return element.offsetParent !== null;
+  isElementVisisble_(el) {
+    return el.offsetParent !== null;
   }
 }
 

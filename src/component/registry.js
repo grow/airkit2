@@ -126,18 +126,19 @@ class ComponentHandler {
     const activeElements = new Set();
 
     for (let i = 0, element; element = this.nodeList[i]; i++) {
-      if (!element.airkitId) {
-        element.airkitId = this.nextId_++;
+      if (!element.akId) {
         const component = new this.componentCtor(element, this.options);
         component.init();
-        this.components[element.airkitId] = component;
+        element.akId = this.nextId_++;
+        element.component = component;
+        this.components[element.akId] = component;
       }
-      activeElements.add(element.airkitId);
+      activeElements.add(element.akId);
     }
 
     // Destroy any component no longer in the DOM.
     Object.values(this.components)
-        .filter((component) => !activeElements.has(component.element.airkitId))
+        .filter((component) => !activeElements.has(component.element.akId))
         .forEach((component) => {
           this.destroyComponent_(component);
         });
@@ -162,9 +163,10 @@ class ComponentHandler {
    * @private
    */
   destroyComponent_(component) {
-    delete this.components[component.element.airkitId];
-    component.element.airkitId = null;
+    delete this.components[component.element.akId];
     component.destroy();
+    component.element.akId = null;
+    component.element.akComponent = null;
   }
 }
 

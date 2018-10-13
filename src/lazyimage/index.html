@@ -3,12 +3,12 @@
 {% block title %}Airkit2 - LazyImageComponent{% endblock %}
 
 {% set css %}
-.lazyimage [lazyimage-background-image],
-.lazyimage [lazyimage-src] {
+.lazyimage[lazyimage-background-image],
+.lazyimage[lazyimage-src] {
   opacity: 0;
   transition: opacity 5s ease;
 }
-.lazyimage [lazyimage-loaded="true"] {
+.lazyimage[lazyimage-loaded="true"] {
   opacity: 1;
 }
 
@@ -64,12 +64,24 @@
 {% set example %}
 <div class="spacer"></div>
 
-<div class="lazyimage">
+<div class="container">
   <h2>lazyimage using img lazyimage-src</h2>
-  <img style="width: 400px; height: 400px" lazyimage-src="https://lh3.googleusercontent.com/dmQfcAxbbvf-_tM_gKPX4z07wl2YqG3qwAoioszQFa4izxL66B7FGXE3qRvLuBFGW8zu16ya6EKmbUePU9Qj=pp-s460">
+  <img class="lazyimage"
+      style="width: 400px; height: 400px"
+      lazyimage-src="https://lh3.googleusercontent.com/dmQfcAxbbvf-_tM_gKPX4z07wl2YqG3qwAoioszQFa4izxL66B7FGXE3qRvLuBFGW8zu16ya6EKmbUePU9Qj=pp-w{width}">
 
   <h2>lazyimage using div lazyimage-background-image</h2>
-  <div style="width: 400px; height: 400px; background-size: cover" lazyimage-background-image="https://lh3.googleusercontent.com/qbXuwPuwwfoETse9LsMRbxYDOt3iaiHZkoTGwMhDsgCsMgk-wYcWqDdzjckMwFdI8Ck9dfCM63k5vL1tWoKy=pp-s460"></div>
+  <div class="lazyimage"
+      style="width: 100%; max-width: 400px; height: 400px; background-size: cover"
+      lazyimage-background-image="https://lh3.googleusercontent.com/qbXuwPuwwfoETse9LsMRbxYDOt3iaiHZkoTGwMhDsgCsMgk-wYcWqDdzjckMwFdI8Ck9dfCM63k5vL1tWoKy=pp-w{width}"></div>
+
+  <h2>elements that are set to `display: none` should not load</h2>
+  <img class="lazyimage"
+      style="display: none"
+      lazyimage-src="https://lh3.googleusercontent.com/dmQfcAxbbvf-_tM_gKPX4z07wl2YqG3qwAoioszQFa4izxL66B7FGXE3qRvLuBFGW8zu16ya6EKmbUePU9Qj=pp-w{width}">
+      <div class="lazyimage"
+      style="display: none"
+      lazyimage-background-image="https://lh3.googleusercontent.com/qbXuwPuwwfoETse9LsMRbxYDOt3iaiHZkoTGwMhDsgCsMgk-wYcWqDdzjckMwFdI8Ck9dfCM63k5vL1tWoKy=pp-w{width}"></div>
 </div>
 
 <div class="spacer"></div>

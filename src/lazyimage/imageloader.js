@@ -29,10 +29,20 @@ export class ImageLoader {
       img.addEventListener('load', () => {
         resolve(src);
       }, {once: true});
+      img.addEventListener('error', () => {
+        reject('failed to load image');
+      });
       // TODO(stevenle): handle failed image load.
       img.src = src;
     });
     this.promises[src] = promise;
+
+    // If the image fails to load, remove the promise from cache since a
+    // repeated call might have a successful response.
+    promise.catch((reason) => {
+      console.error(reason);
+      delete this.promises[src];
+    });
     return promise;
   }
 
