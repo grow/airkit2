@@ -23,7 +23,7 @@ yarn dev
 
 # Quick start
 
-```
+```javascript
 import * as airkit2 from 'airkit2';
 import LazyImageComponent from 'airkit2/lazyimage/lazyimagecomponent';
 
