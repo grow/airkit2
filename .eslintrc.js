@@ -8,5 +8,6 @@ module.exports = {
     'new-cap': [2, {
       newIsCapExceptionPattern: "Ctor$",
     }],
+    'require-jsdoc': 0,
   },
 };
