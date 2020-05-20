@@ -16,38 +16,39 @@ const config = {
 };
 
 gulp.task('build:js', () => {
-  gulp.src(config.JS_SOURCES)
-  .pipe(webpackStream(webpackConfig, webpack))
-  .pipe(gulp.dest(config.JS_OUT_DIR));
-});
-
-gulp.task('watch:js', () => {
-  webpackConfig.watch = true;
-  gulp.src(config.JS_SOURCES)
+  return gulp.src(config.JS_SOURCES)
       .pipe(webpackStream(webpackConfig, webpack))
       .pipe(gulp.dest(config.JS_OUT_DIR));
 });
 
+gulp.task('watch:js', () => {
+  let webpackDevConfig = Object.assign({}, webpackConfig, {
+    // mode: 'development',
+    watch: true,
+  });
+  return gulp.src(config.JS_SOURCES)
+      .pipe(webpackStream(webpackDevConfig, webpack))
+      .pipe(gulp.dest(config.JS_OUT_DIR));
+});
+
 gulp.task('build:sass', () => {
-  gulp.src(config.SASS_SOURCES)
+  return gulp.src(config.SASS_SOURCES)
       .pipe(sass({
         outputStyle: 'compressed',
       })).on('error', sass.logError)
       .pipe(rename(((path) => {
         path.basename += '.min';
       })))
-      .pipe(autoprefixer({
-        browsers: [
-          'last 1 version',
-          'last 2 iOS versions',
-        ],
-      }))
+      .pipe(autoprefixer())
       .pipe(gulp.dest(config.SASS_OUT_DIR));
 });
 
 gulp.task('watch:sass', () => {
-  gulp.watch(config.SASS_SOURCES, ['build:sass']);
+  gulp.watch(config.SASS_SOURCES, gulp.series('build:sass'));
 });
 
-gulp.task('build', ['build:js', 'build:sass']);
-gulp.task('dev', ['build:sass', 'watch:js', 'watch:sass']);
+gulp.task('watch',
+    gulp.parallel('watch:js', gulp.series('build:sass', 'watch:sass')));
+
+gulp.task('build', gulp.parallel('build:js', 'build:sass'));
+gulp.task('dev', gulp.series('watch'));

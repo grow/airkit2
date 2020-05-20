@@ -10,12 +10,12 @@
 </style>
 <link rel="stylesheet" href="/airkit2/dist/css/docs/docs.min.css?c=565bc7fc958a34d941c3bd63f0aa63c0">
 <style>
-.lazyimage [lazyimage-background-image],
-.lazyimage [lazyimage-src] {
+.lazyimage[lazyimage-background-image],
+.lazyimage[lazyimage-src] {
   opacity: 0;
   transition: opacity 5s ease;
 }
-.lazyimage [lazyimage-loaded="true"] {
+.lazyimage[lazyimage-loaded="true"] {
   opacity: 1;
 }
 
@@ -25,7 +25,7 @@
 </style>
 <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="/airkit2/dist/js/lazyimage/lazyimage.example.min.js?c=3a9f4474c94cf8d1f6639366ceefb09c"></script>
+<script src="/airkit2/dist/js/lazyimage/lazyimage.example.min.js?c=61a5c42c69a1f5e39e693ad4de49d107"></script>
 </head>
 <body>
 <div class="page">
@@ -46,6 +46,7 @@
 <ul>
 <li><a href="/airkit2/inview/">InviewComponent</a></li>
 <li><a href="/airkit2/lazyimage/">LazyImageComponent</a></li>
+<li><a href="/airkit2/ytmodal/">YTModalComponent</a></li>
 </ul>
 <h2>SASS Modules</h2>
 <ul>
@@ -85,32 +86,47 @@
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 <p>(scroll down)</p>
 <div class="spacer"></div>
-<div class="lazyimage">
+<div class="container">
 <h2>lazyimage using img lazyimage-src</h2>
-<img style="width: 400px; height: 400px" lazyimage-src="https://lh3.googleusercontent.com/dmQfcAxbbvf-_tM_gKPX4z07wl2YqG3qwAoioszQFa4izxL66B7FGXE3qRvLuBFGW8zu16ya6EKmbUePU9Qj=pp-s460">
+<img class="lazyimage" style="width: 400px; height: 400px" lazyimage-src="https://lh3.googleusercontent.com/dmQfcAxbbvf-_tM_gKPX4z07wl2YqG3qwAoioszQFa4izxL66B7FGXE3qRvLuBFGW8zu16ya6EKmbUePU9Qj=pp-w{width}">
 <h2>lazyimage using div lazyimage-background-image</h2>
-<div style="width: 400px; height: 400px; background-size: cover" lazyimage-background-image="https://lh3.googleusercontent.com/qbXuwPuwwfoETse9LsMRbxYDOt3iaiHZkoTGwMhDsgCsMgk-wYcWqDdzjckMwFdI8Ck9dfCM63k5vL1tWoKy=pp-s460"></div>
+<div class="lazyimage" style="width: 100%; max-width: 400px; height: 400px; background-size: cover" lazyimage-background-image="https://lh3.googleusercontent.com/qbXuwPuwwfoETse9LsMRbxYDOt3iaiHZkoTGwMhDsgCsMgk-wYcWqDdzjckMwFdI8Ck9dfCM63k5vL1tWoKy=pp-w{width}"></div>
+<h2>elements that are set to `display: none` should not load</h2>
+<img class="lazyimage" style="display: none" lazyimage-src="https://lh3.googleusercontent.com/dmQfcAxbbvf-_tM_gKPX4z07wl2YqG3qwAoioszQFa4izxL66B7FGXE3qRvLuBFGW8zu16ya6EKmbUePU9Qj=pp-w{width}">
+<div class="lazyimage" style="display: none" lazyimage-background-image="https://lh3.googleusercontent.com/qbXuwPuwwfoETse9LsMRbxYDOt3iaiHZkoTGwMhDsgCsMgk-wYcWqDdzjckMwFdI8Ck9dfCM63k5vL1tWoKy=pp-w{width}"></div>
 </div>
 <div class="spacer"></div>
 <h3>HTML</h3>
 <pre><code class="html">&lt;div class=&quot;spacer&quot;&gt;&lt;/div&gt;
 
-&lt;div class=&quot;lazyimage&quot;&gt;
+&lt;div class=&quot;container&quot;&gt;
   &lt;h2&gt;lazyimage using img lazyimage-src&lt;/h2&gt;
-  &lt;img style=&quot;width: 400px; height: 400px&quot; lazyimage-src=&quot;https://lh3.googleusercontent.com/dmQfcAxbbvf-_tM_gKPX4z07wl2YqG3qwAoioszQFa4izxL66B7FGXE3qRvLuBFGW8zu16ya6EKmbUePU9Qj=pp-s460&quot;&gt;
+  &lt;img class=&quot;lazyimage&quot;
+      style=&quot;width: 400px; height: 400px&quot;
+      lazyimage-src=&quot;https://lh3.googleusercontent.com/dmQfcAxbbvf-_tM_gKPX4z07wl2YqG3qwAoioszQFa4izxL66B7FGXE3qRvLuBFGW8zu16ya6EKmbUePU9Qj=pp-w{width}&quot;&gt;
 
   &lt;h2&gt;lazyimage using div lazyimage-background-image&lt;/h2&gt;
-  &lt;div style=&quot;width: 400px; height: 400px; background-size: cover&quot; lazyimage-background-image=&quot;https://lh3.googleusercontent.com/qbXuwPuwwfoETse9LsMRbxYDOt3iaiHZkoTGwMhDsgCsMgk-wYcWqDdzjckMwFdI8Ck9dfCM63k5vL1tWoKy=pp-s460&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;lazyimage&quot;
+      style=&quot;width: 100%; max-width: 400px; height: 400px; background-size: cover&quot;
+      lazyimage-background-image=&quot;https://lh3.googleusercontent.com/qbXuwPuwwfoETse9LsMRbxYDOt3iaiHZkoTGwMhDsgCsMgk-wYcWqDdzjckMwFdI8Ck9dfCM63k5vL1tWoKy=pp-w{width}&quot;&gt;&lt;/div&gt;
+
+  &lt;h2&gt;elements that are set to `display: none` should not load&lt;/h2&gt;
+  &lt;img class=&quot;lazyimage&quot;
+      style=&quot;display: none&quot;
+      lazyimage-src=&quot;https://lh3.googleusercontent.com/dmQfcAxbbvf-_tM_gKPX4z07wl2YqG3qwAoioszQFa4izxL66B7FGXE3qRvLuBFGW8zu16ya6EKmbUePU9Qj=pp-w{width}&quot;&gt;
+      &lt;div class=&quot;lazyimage&quot;
+      style=&quot;display: none&quot;
+      lazyimage-background-image=&quot;https://lh3.googleusercontent.com/qbXuwPuwwfoETse9LsMRbxYDOt3iaiHZkoTGwMhDsgCsMgk-wYcWqDdzjckMwFdI8Ck9dfCM63k5vL1tWoKy=pp-w{width}&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
 
 &lt;div class=&quot;spacer&quot;&gt;&lt;/div&gt;</code></pre>
 <h3>CSS</h3>
-<pre><code class="css">.lazyimage [lazyimage-background-image],
-.lazyimage [lazyimage-src] {
+<pre><code class="css">.lazyimage[lazyimage-background-image],
+.lazyimage[lazyimage-src] {
   opacity: 0;
   transition: opacity 5s ease;
 }
-.lazyimage [lazyimage-loaded=&quot;true&quot;] {
+.lazyimage[lazyimage-loaded=&quot;true&quot;] {
   opacity: 1;
 }
 

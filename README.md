@@ -14,10 +14,10 @@ Quick start:
 
 ```
 # Install deps
-yarn
+npm install
 
 # Start the dev server at localhost:3000
-yarn dev
+npm run dev
 ```
 
 
