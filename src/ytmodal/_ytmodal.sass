@@ -1,6 +1,7 @@
 $ytmodal-button-height: 50px !default
 $ytmodal-color-black: #000 !default
 $ytmodal-color-white: #fff !default
+$ytmodal-z-index: 2000 !default
 
 .ytmodal
   cursor: pointer
@@ -16,7 +17,7 @@ $ytmodal-color-white: #fff !default
   transition: all .3s cubic-bezier(.4,0,.2,1)
   visibility: hidden
   width: 100%
-  z-index: 2000
+  z-index: $ytmodal-z-index
 
   &--enabled
     display: block
@@ -27,47 +28,59 @@ $ytmodal-color-white: #fff !default
     visibility: visible
 
 .ytmodal-player__x
-    background: $ytmodal-color-black
-    color: $ytmodal-color-white
-    cursor: pointer
-    font-size: $ytmodal-button-height
-    height: $ytmodal-button-height
-    line-height: $ytmodal-button-height
-    opacity: 0.8
-    overflow: hidden
-    position: absolute
-    right: 0
+  align-items: center
+  background: $ytmodal-color-black
+  border: 2px solid rgba(99, 96, 96, 0.6)
+  border-radius: 50%
+  color: $ytmodal-color-white
+  cursor: pointer
+  display: flex
+  font-size: $ytmodal-button-height
+  height: $ytmodal-button-height
+  justify-content: center
+  line-height: $ytmodal-button-height
+  opacity: 0.8
+  overflow: hidden
+  position: absolute
+  right: 3.69853vw
+  text-align: center
+  top: 3.69853vw
+  transition: all .3s
+  width: $ytmodal-button-height
+  z-index: $ytmodal-z-index + 3
+
+  &:before
+    content: "\00D7"
+    display: block
+    font-family: 'arial', sans-serif
+    font-size: $ytmodal-button-height - 10px
+    height: $ytmodal-button-height - 10px
+    line-height: 1
     text-align: center
-    top: 0
-    transition: all .3s
-    width: $ytmodal-button-height
-    z-index: 2004
+    margin-top: 2px
+    width: $ytmodal-button-height - 10px
 
-    &:before
-      content: "\00D7"
-      display: block
-      font-family: 'arial', sans-serif
-      height: $ytmodal-button-height
-      line-height: $ytmodal-button-height
-      text-align: center
-      vertical-align: middle
-      width: $ytmodal-button-height
-
-    &:hover
-      color: $ytmodal-color-black
-      background: $ytmodal-color-white
+  &:hover
+    color: $ytmodal-color-black
+    background: $ytmodal-color-white
 
 .ytmodal-player__mask
-    background: $ytmodal-color-white
-    height: 100%
-    left: 0
-    position: absolute
-    top: 0
-    width: 100%
-    z-index: 2001
+  background: $ytmodal-color-black
+  height: 100%
+  left: 0
+  position: absolute
+  top: 0
+  width: 100%
+  z-index: $ytmodal-z-index + 1
 
 .ytmodal-player__player
-    height: 100%
-    position: relative
-    width: 100%
-    z-index: 2002
+  height: calc(100vh - 7.39707vw)
+  left: 50%
+  // Use max-height and max-width to fix the player to 16:9.
+  max-height: calc((100vw - 22.19121vw) * 9/16)
+  max-width: calc((100vh - 7.39707vw) * 16/9)
+  position: absolute
+  top: 50%
+  transform: translateX(-50%) translateY(-50%)
+  width: calc(100vw - 22.19121vw)
+  z-index: $ytmodal-z-index + 2
