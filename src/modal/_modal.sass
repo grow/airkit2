@@ -1,0 +1,83 @@
+$modal-button-height: 50px !default
+$modal-color-black: #000 !default
+$modal-color-white: #fff !default
+$modal-z-index: 2000 !default
+
+[data-modal-id]
+  display: none
+
+.modal
+  display: none
+  height: 100%
+  left: 0
+  opacity: 0
+  position: fixed
+  top: 0
+  transform: scale(1.15)
+  transition: all 0.3s cubic-bezier(.4,0,.2,1)
+  visibility: hidden
+  width: 100%
+  z-index: $modal-z-index
+
+  &--enabled
+    display: block
+
+  &--visible
+    opacity: 1
+    transform: scale(1)
+    visibility: visible
+
+.modal__x
+  align-items: center
+  background: $modal-color-black
+  border: 2px solid rgba(99, 96, 96, 0.6)
+  border-radius: 50%
+  color: $modal-color-white
+  cursor: pointer
+  display: flex
+  font-size: $modal-button-height
+  height: $modal-button-height
+  justify-content: center
+  line-height: $modal-button-height
+  opacity: 0.8
+  overflow: hidden
+  position: absolute
+  right: 3.69853vw
+  text-align: center
+  top: 3.69853vw
+  transition: all 0.3s
+  width: $modal-button-height
+  z-index: $modal-z-index + 3
+
+  &:before
+    content: "\00D7"
+    display: block
+    font-family: 'arial', sans-serif
+    font-size: $modal-button-height - 10px
+    height: $modal-button-height - 10px
+    line-height: 1
+    text-align: center
+    margin-top: 2px
+    width: $modal-button-height - 10px
+
+  &:hover
+    color: $modal-color-black
+    background: $modal-color-white
+
+.modal__mask
+  background: $modal-color-black
+  height: 100%
+  left: 0
+  opacity: 0.8
+  position: absolute
+  top: 0
+  width: 100%
+  z-index: $modal-z-index + 1
+
+.modal__content
+  height: 100%
+  left: 0
+  position: absolute
+  top: 0
+  width: 100%
+  z-index: $modal-z-index + 2

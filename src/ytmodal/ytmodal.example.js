@@ -3,7 +3,8 @@ import YTModalComponent from '../ytmodal/ytmodalcomponent';
 
 
 const app = new Registry();
-app.register('ytmodal', YTModalComponent, {});
+const ytmodalOptions = {};
+app.register('ytmodal', YTModalComponent, ytmodalOptions);
 document.addEventListener('DOMContentLoaded', () => {
   app.run();
 });

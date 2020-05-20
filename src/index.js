@@ -1,3 +1,4 @@
-import {Registry as AirkitRegistry} from './components/registry';
+import {Component} from './component/component';
+import {Registry} from './component/registry';
 
-export const Registry = AirkitRegistry;
+export {Component, Registry};

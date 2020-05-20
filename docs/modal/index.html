@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Airkit2 - YTModalComponent</title>
+<title>Airkit2 - ModalComponent</title>
 <link rel="shortcut icon" href="/airkit2/static/images/favicon.png">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 <style>
 .hljs{display:block;background:#fafafa;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
 </style>
 <link rel="stylesheet" href="/airkit2/dist/css/docs/docs.min.css?c=565bc7fc958a34d941c3bd63f0aa63c0">
-<link rel="stylesheet" href="/airkit2/dist/css/ytmodal/ytmodal.example.min.css?c=cfa7f185fa8cc9b1c180a712cee5a044">
+<link rel="stylesheet" href="/airkit2/dist/css/modal/modal.example.min.css?c=3638ff7e11b085e8c5f5ade27bafeb97">
 <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="/airkit2/dist/js/ytmodal/ytmodal.example.min.js?c=4486ff9b1f242bb15e88fa1e7236d2b2"></script>
+<script src="/airkit2/dist/js/modal/modal.example.min.js?c=c6039eb040f2d84356216f19312b42d6"></script>
 </head>
 <body>
 <div class="page">
@@ -43,9 +43,9 @@
 </nav>
 </aside>
 <main class="page__main">
-<h1>YTModalComponent</h1>
+<h1>ModalComponent</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<h2>LazyImageComponentOptions</h2>
+<h2>ModalComponentOptions</h2>
 <table>
 <thead>
 <tr>
@@ -57,29 +57,63 @@
 </thead>
 <tbody>
 <tr>
-<td>modalPlayer</td>
-<td>{YTModalPlayer}</td>
-<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
-<td>null</td>
+<td>modalOpenAttr</td>
+<td>{string}</td>
+<td>Attr name used on the button to determine which modal to open.</td>
+<td><span style="white-space: nowrap">data-modal-open</span></td>
+</tr>
+<tr>
+<td>modalIdAttr</td>
+<td>{string}</td>
+<td>
+Attr name used to identify which element to grab the modal contents from. The first child element of that parent element that matches the modal id will be placed into the modal of the modal when opened.
+</td>
+<td><span style="white-space: nowrap">data-modal-id</span></td>
+</tr>
+<tr>
+<td>enableHashHistory</td>
+<td>{boolean}</td>
+<td>
+If enabled, opening a modal dialog will push a hash url to html5 history. When opening a new page with a #hash will automatically open the modal, and the browser's back button will close the modal.
+</td>
+<td><span style="white-space: nowrap">false</span></td>
 </tr>
 </tbody>
 </table>
 <h2>Example</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-<button class="ytmodal" data-youtube-id="Q0CbN8sfihY">Open YT Modal</button>
+<button class="modal-button" data-modal-open="foo">Open Modal</button>
+<div data-modal-id="foo">
+<div class="foo">
+This is the contents of "foo" modal.
+</div>
+</div>
 <h3>HTML</h3>
-<pre><code class="html">&lt;button class=&quot;ytmodal&quot; data-youtube-id=&quot;Q0CbN8sfihY&quot;&gt;Open YT Modal&lt;/button&gt;</code></pre>
+<pre><code class="html">&lt;button class=&quot;modal-button&quot; data-modal-open=&quot;foo&quot;&gt;Open Modal&lt;/button&gt;
+&lt;div data-modal-id=&quot;foo&quot;&gt;
+  &lt;div class=&quot;foo&quot;&gt;
+    This is the contents of &quot;foo&quot; modal.
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
 <h3>SASS</h3>
-<pre><code class="css">@import &#39;ytmodal&#39;
+<pre><code class="css">@import &#39;modal&#39;
+
+.foo
+  background-color: #fff
+  left: 50%
+  padding: 80px 120px
+  position: absolute
+  top: 50%
+  transform: translateX(-50%) translateY(-50%)
 </code></pre>
 <h3>JavaScript</h3>
-<pre><code class="js">import Registry from &#39;airkit2/component/registry&#39;;
-import YTModalComponent from &#39;airkit2/ytmodal/ytmodalcomponent&#39;;
+<pre><code class="js">import {Registry} from &#39;airkit2&#39;;
+import {ModalButtonComponent} from &#39;airkit2/modal&#39;;
 
 
 const app = new Registry();
-const ytmodalOptions = {};
-app.register(&#39;ytmodal&#39;, YTModalComponent, ytmodalOptions);
+const modalOptions = {enableHashHistory: true};
+app.register(&#39;modal-button&#39;, ModalButtonComponent, modalOptions);
 document.addEventListener(&#39;DOMContentLoaded&#39;, () =&gt; {
   app.run();
 });

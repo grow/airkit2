@@ -136,12 +136,11 @@ function runBuild(argv) {
  * @return {string}
  */
 function normalizeHtml(html) {
-  let output = htmlMinifier.minify(html, {
+  const output = htmlMinifier.minify(html, {
     collapseWhitespace: true,
     preserveLineBreaks: true,
     removeComments: true,
   }).trim();
-
   return new nunjucks.runtime.SafeString(output);
 }
 

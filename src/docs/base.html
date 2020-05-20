@@ -25,31 +25,31 @@
 
 <div class="page">
 
-<div class="page__header">
+<header class="page__header">
 {% block header %}
 {% include "docs/header.html" %}
 {% endblock %}
-</div>
+</header>
 
 <div class="page__wrap">
 
-<div class="page__sidebar">
+<aside class="page__sidebar">
 {% block sidebar %}
 {% include "docs/sidebar.html" %}
 {% endblock %}
-</div>
+</aside>
 
-<div class="page__main">
+<main class="page__main">
 {% block main %}{% endblock %}
-</div>
+</main>
 
 </div> <!-- page__wrap -->
 
-<div class="page__footer">
+<footer class="page__footer">
 {% block footer %}
 {% include "docs/footer.html" %}
 {% endblock %}
-</div>
+</footer>
 
 </div> <!-- page -->
 

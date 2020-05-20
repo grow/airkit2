@@ -1,0 +1,81 @@
+{% extends "docs/base.html" %}
+
+{% block title %}Airkit2 - ModalComponent{% endblock %}
+
+{% block styles %}
+{{macros.style_tag('modal/modal.example.min.css')}}
+{% endblock %}
+
+{% block head_scripts %}
+{{macros.script_tag('modal/modal.example.min.js')}}
+{% endblock %}
+
+{% block main %}
+<h1>ModalComponent</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<h2>ModalComponentOptions</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>modalOpenAttr</td>
+      <td>{string}</td>
+      <td>Attr name used on the button to determine which modal to open.</td>
+      <td><span style="white-space: nowrap">data-modal-open</span></td>
+    </tr>
+    <tr>
+      <td>modalIdAttr</td>
+      <td>{string}</td>
+      <td>
+        Attr name used to identify which element to grab the modal contents
+        from. The first child element of that parent element that matches the
+        modal id will be placed into the modal of the modal when opened.
+      </td>
+      <td><span style="white-space: nowrap">data-modal-id</span></td>
+    </tr>
+    <tr>
+      <td>enableHashHistory</td>
+      <td>{boolean}</td>
+      <td>
+        If enabled, opening a modal dialog will push a hash url to html5
+        history. When opening a new page with a #hash will automatically open
+        the modal, and the browser's back button will close the modal.
+      </td>
+      <td><span style="white-space: nowrap">false</span></td>
+    </tr>
+
+
+  </tbody>
+</table>
+
+<h2>Example</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+{% set example %}
+<button class="modal-button" data-modal-open="foo">Open Modal</button>
+<div data-modal-id="foo">
+  <div class="foo">
+    This is the contents of "foo" modal.
+  </div>
+</div>
+{% endset %}
+
+{{example|safe}}
+
+<h3>HTML</h3>
+<pre><code class="html">{{example.trim()}}</code></pre>
+
+<h3>SASS</h3>
+{{macros.source_code('modal/modal.example.sass')}}
+
+<h3>JavaScript</h3>
+{{macros.source_code('modal/modal.example.js')}}
+{% endblock %}
