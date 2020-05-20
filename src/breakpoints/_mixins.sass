@@ -11,7 +11,7 @@ $breakpoint-map: ( xs: $breakpoint-xs, sm: $breakpoint-sm, md: $breakpoint-md, l
   @if map_has_key($breakpoint-map, $size)
     $width: map-get($breakpoint-map, $size)
 
-  @media (min-width: $width)
+  @media (min-width: $width + 1px)
     @content
 
 
@@ -38,4 +38,21 @@ $breakpoint-map: ( xs: $breakpoint-xs, sm: $breakpoint-sm, md: $breakpoint-md, l
     @content
 =xl
   +gt(xl)
+    @content
+
+
+=xs-lt
+  +lt(xs)
+    @content
+=sm-lt
+  +lt(sm)
+    @content
+=md-lt
+  +lt(md)
+    @content
+=lg-lt
+  +lt(lg)
+    @content
+=xl-lt
+  +lt(xl)
     @content
