@@ -41,8 +41,8 @@ export class ModalButtonComponent extends Component {
 
     /**
      * If enabled, opening a modal dialog will push a hash url to html5 history.
-     * When opening a new page with a #hash will automatically open the modal,
-     * and the browser's back button will close the modal.
+     * When opening a new page with a #hash in the url, the modal will
+     * automatically open.
      */
     this.enableHashHistory_ = options.enableHashHistory || false;
 
@@ -103,9 +103,12 @@ export class ModalButtonComponent extends Component {
 
     if (this.enableHashHistory_) {
       const modalId = this.getModalId();
-      window.history.pushState({
-        'modalId': modalId,
-      }, '' /* title */, `#${modalId}`);
+      const hash = window.location.hash.substr(1);
+      if (hash !== modalId) {
+        window.history.pushState({
+          'modalId': modalId,
+        }, '' /* title */, `#${modalId}`);
+      }
     }
 
     this.active_ = true;

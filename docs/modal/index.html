@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Airkit2 - ModalComponent</title>
+<title>Airkit2 - ModalButtonComponent</title>
 <link rel="shortcut icon" href="/airkit2/static/images/favicon.png">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 <style>
@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/airkit2/dist/css/modal/modal.example.min.css?c=3638ff7e11b085e8c5f5ade27bafeb97">
 <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="/airkit2/dist/js/modal/modal.example.min.js?c=c6039eb040f2d84356216f19312b42d6"></script>
+<script src="/airkit2/dist/js/modal/modal.example.min.js?c=a27b44bc0e736817f12ff3dbb720986d"></script>
 </head>
 <body>
 <div class="page">
@@ -43,9 +43,11 @@
 </nav>
 </aside>
 <main class="page__main">
-<h1>ModalComponent</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<h2>ModalComponentOptions</h2>
+<h1>ModalButtonComponent</h1>
+<p>
+ModalButtonComponent can be attached to a button-like element to open a modal dialog box.
+</p>
+<h2>ModalButtonComponentOptions</h2>
 <table>
 <thead>
 <tr>
@@ -74,22 +76,22 @@ Attr name used to identify which element to grab the modal contents from. The fi
 <td>enableHashHistory</td>
 <td>{boolean}</td>
 <td>
-If enabled, opening a modal dialog will push a hash url to html5 history. When opening a new page with a #hash will automatically open the modal, and the browser's back button will close the modal.
+If enabled, opening a modal dialog will push a hash url to html5 history. When opening a new page with a #hash in the url, the modal will automatically open.
 </td>
 <td><span style="white-space: nowrap">false</span></td>
 </tr>
 </tbody>
 </table>
 <h2>Example</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-<button class="modal-button" data-modal-open="foo">Open Modal</button>
+<p>Press the button below to open the "foo" modal dialog.</p>
+<button class="modal-button" data-modal-open="foo">Open "foo" modal</button>
 <div data-modal-id="foo">
 <div class="foo">
 This is the contents of "foo" modal.
 </div>
 </div>
 <h3>HTML</h3>
-<pre><code class="html">&lt;button class=&quot;modal-button&quot; data-modal-open=&quot;foo&quot;&gt;Open Modal&lt;/button&gt;
+<pre><code class="html">&lt;button class=&quot;modal-button&quot; data-modal-open=&quot;foo&quot;&gt;Open &quot;foo&quot; modal&lt;/button&gt;
 &lt;div data-modal-id=&quot;foo&quot;&gt;
   &lt;div class=&quot;foo&quot;&gt;
     This is the contents of &quot;foo&quot; modal.

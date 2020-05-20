@@ -1,6 +1,6 @@
 {% extends "docs/base.html" %}
 
-{% block title %}Airkit2 - ModalComponent{% endblock %}
+{% block title %}Airkit2 - ModalButtonComponent{% endblock %}
 
 {% block styles %}
 {{macros.style_tag('modal/modal.example.min.css')}}
@@ -11,10 +11,13 @@
 {% endblock %}
 
 {% block main %}
-<h1>ModalComponent</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h1>ModalButtonComponent</h1>
+<p>
+  ModalButtonComponent can be attached to a button-like element to open a
+  modal dialog box.
+</p>
 
-<h2>ModalComponentOptions</h2>
+<h2>ModalButtonComponentOptions</h2>
 <table>
   <thead>
     <tr>
@@ -46,21 +49,19 @@
       <td>{boolean}</td>
       <td>
         If enabled, opening a modal dialog will push a hash url to html5
-        history. When opening a new page with a #hash will automatically open
-        the modal, and the browser's back button will close the modal.
+        history. When opening a new page with a #hash in the url, the modal will
+        automatically open.
       </td>
       <td><span style="white-space: nowrap">false</span></td>
     </tr>
-
-
   </tbody>
 </table>
 
 <h2>Example</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<p>Press the button below to open the "foo" modal dialog.</p>
 
 {% set example %}
-<button class="modal-button" data-modal-open="foo">Open Modal</button>
+<button class="modal-button" data-modal-open="foo">Open "foo" modal</button>
 <div data-modal-id="foo">
   <div class="foo">
     This is the contents of "foo" modal.
