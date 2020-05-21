@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <title>Airkit2 - LazyImageComponent</title>
 <link rel="shortcut icon" href="/airkit2/static/images/favicon.png">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
 <style>
 .hljs{display:block;background:#fafafa;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
 </style>
-<link rel="stylesheet" href="/airkit2/dist/css/docs/docs.min.css?c=565bc7fc958a34d941c3bd63f0aa63c0">
+<link rel="stylesheet" href="/airkit2/dist/css/docs/docs.min.css?c=21931d7d46cf4a86a4e24b87a2b12a3f">
 <style>
 .lazyimage[lazyimage-background-image],
 .lazyimage[lazyimage-src] {
@@ -24,8 +25,8 @@
 }
 </style>
 <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="/airkit2/dist/js/lazyimage/lazyimage.example.min.js?c=43eabc2c9d7b2685a6bafd665f961369"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+<script src="/airkit2/dist/js/lazyimage/lazyimage.example.min.js?c=4d89ef96764ff898691d08802217007a"></script>
 </head>
 <body>
 <div class="page">
@@ -38,26 +39,40 @@
 <aside class="page__sidebar">
 <nav class="sidebar">
 <h2>Documentation</h2>
-<ul>
-<li>Foo</li>
-<li>Bar</li>
+<ul class="sidebar__group">
+<li class="sidebar__item">
+<a href="/airkit2/">Introduction</a>
+</li>
+<li class="sidebar__item">
+<a href="/airkit2/docs/components/">Components</a>
+</li>
 </ul>
 <h2>Components</h2>
-<ul>
-<li><a href="/airkit2/inview/">InviewComponent</a></li>
-<li><a href="/airkit2/lazyimage/">LazyImageComponent</a></li>
-<li><a href="/airkit2/modal/">ModalButtonComponent</a></li>
-<li><a href="/airkit2/ytmodal/">YTModalComponent</a></li>
+<ul class="sidebar__group">
+<li class="sidebar__item">
+<a href="/airkit2/inview/">InviewComponent</a>
+</li>
+<li class="sidebar__item">
+<a href="/airkit2/lazyimage/">LazyImageComponent</a>
+</li>
+<li class="sidebar__item">
+<a href="/airkit2/modal/">ModalButtonComponent</a>
+</li>
+<li class="sidebar__item">
+<a href="/airkit2/ytmodal/">YTModalComponent</a>
+</li>
 </ul>
 <h2>SASS Modules</h2>
-<ul>
-<li><a href="/airkit2/breakpoints/">breakpoints</a></li>
+<ul class="sidebar__group">
+<li class="sidebar__item">
+<a href="/airkit2/breakpoints/">breakpoints</a>
+</li>
 </ul>
 </nav>
 </aside>
 <main class="page__main">
 <h1>LazyImageComponent</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>LazyImageComponent loads an image into an element when it comes inview.</p>
 <h2>LazyImageComponentOptions</h2>
 <table>
 <thead>
@@ -72,19 +87,19 @@
 <tr>
 <td>inviewClass</td>
 <td>{string}</td>
-<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+<td>CSS class applied when the element is visible.</td>
 <td>null</td>
 </tr>
 <tr>
 <td>loadedClass</td>
 <td>{string}</td>
-<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+<td>CSS class applied when the image is loaded.</td>
 <td>null</td>
 </tr>
 </tbody>
 </table>
 <h2>Example</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<p>Scroll down to view the lazyimage.</p>
 <p>(scroll down)</p>
 <div class="spacer"></div>
 <div class="container">
@@ -115,7 +130,7 @@
   &lt;img class=&quot;lazyimage&quot;
       style=&quot;display: none&quot;
       lazyimage-src=&quot;https://lh3.googleusercontent.com/dmQfcAxbbvf-_tM_gKPX4z07wl2YqG3qwAoioszQFa4izxL66B7FGXE3qRvLuBFGW8zu16ya6EKmbUePU9Qj=pp-w{width}&quot;&gt;
-      &lt;div class=&quot;lazyimage&quot;
+  &lt;div class=&quot;lazyimage&quot;
       style=&quot;display: none&quot;
       lazyimage-background-image=&quot;https://lh3.googleusercontent.com/qbXuwPuwwfoETse9LsMRbxYDOt3iaiHZkoTGwMhDsgCsMgk-wYcWqDdzjckMwFdI8Ck9dfCM63k5vL1tWoKy=pp-w{width}&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -135,8 +150,8 @@
   min-height: 80vh;
 }</code></pre>
 <h3>JavaScript</h3>
-<pre><code class="js">import Registry from &#39;airkit2/component/registry&#39;;
-import LazyImageComponent from &#39;airkit2/lazyimage/lazyimagecomponent&#39;;
+<pre><code class="js">import {Registry} from &#39;airkit2&#39;;
+import {LazyImageComponent} from &#39;airkit2/lazyimage&#39;;
 
 
 const app = new Registry();

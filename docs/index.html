@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <title>Airkit2</title>
 <link rel="shortcut icon" href="/airkit2/static/images/favicon.png">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
 <style>
 .hljs{display:block;background:#fafafa;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
 </style>
-<link rel="stylesheet" href="/airkit2/dist/css/docs/docs.min.css?c=565bc7fc958a34d941c3bd63f0aa63c0">
+<link rel="stylesheet" href="/airkit2/dist/css/docs/docs.min.css?c=21931d7d46cf4a86a4e24b87a2b12a3f">
 <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
 </head>
 <body>
 <div class="page">
@@ -23,26 +24,68 @@
 <aside class="page__sidebar">
 <nav class="sidebar">
 <h2>Documentation</h2>
-<ul>
-<li>Foo</li>
-<li>Bar</li>
+<ul class="sidebar__group">
+<li class="sidebar__item">
+<a href="/airkit2/">Introduction</a>
+</li>
+<li class="sidebar__item">
+<a href="/airkit2/docs/components/">Components</a>
+</li>
 </ul>
 <h2>Components</h2>
-<ul>
-<li><a href="/airkit2/inview/">InviewComponent</a></li>
-<li><a href="/airkit2/lazyimage/">LazyImageComponent</a></li>
-<li><a href="/airkit2/modal/">ModalButtonComponent</a></li>
-<li><a href="/airkit2/ytmodal/">YTModalComponent</a></li>
+<ul class="sidebar__group">
+<li class="sidebar__item">
+<a href="/airkit2/inview/">InviewComponent</a>
+</li>
+<li class="sidebar__item">
+<a href="/airkit2/lazyimage/">LazyImageComponent</a>
+</li>
+<li class="sidebar__item">
+<a href="/airkit2/modal/">ModalButtonComponent</a>
+</li>
+<li class="sidebar__item">
+<a href="/airkit2/ytmodal/">YTModalComponent</a>
+</li>
 </ul>
 <h2>SASS Modules</h2>
-<ul>
-<li><a href="/airkit2/breakpoints/">breakpoints</a></li>
+<ul class="sidebar__group">
+<li class="sidebar__item">
+<a href="/airkit2/breakpoints/">breakpoints</a>
+</li>
 </ul>
 </nav>
 </aside>
 <main class="page__main">
-<h1>Welcome to Airkit2</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h1>Introduction</h1>
+<p>Welcome to Airkit2! Airkit2 is a collection of JavaScript and SASS components designed to make life easier for the modern frontend developer.</p>
+<p>Airkit2's components are written in vanilla JavaScript (no third-party deps), aiming to be lightweight and performant. Components will decoroate elements as they enter the DOM, and similarly dispose themselves when they are removed.</p>
+<h2>Installation</h2>
+<pre><code class="bash">npm install grow/airkit2</code></pre>
+<h2>Getting started</h2>
+<pre><code class="js">import {Registry} from &#39;airkit2&#39;;
+import {LazyImageComponent} from &#39;airkit2/lazyimage&#39;;
+
+
+// Create a new component registry, which handles decoration of elements as
+// they enter and leave the DOM.
+const app = new Registry();
+
+// Set options for a component. Each component can have its own set of
+// configurable options.
+const lazyimageOptions = {
+  inviewClass: &#39;lazyimage--visible&#39;,
+  loadedClass: &#39;lazyimage--loaded&#39;,
+};
+
+// Register the component and bind it to a specific CSS class. When an element
+// enters the DOM with that class, the component will be initialized on that
+// element.
+app.register(&#39;lazyimage&#39;, LazyImageComponent, lazyimageOptions);
+
+// Start the airkit2 app.
+document.addEventListener(&#39;DOMContentLoaded&#39;, () =&gt; {
+  app.run();
+});</code></pre>
 </main>
 </div>
 <footer class="page__footer">
