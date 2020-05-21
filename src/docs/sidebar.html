@@ -1,20 +1,26 @@
+{% macro sidebar_item(url, title) %}
+  <li class="sidebar__item{% if url == request.originalUrl %} sidebar__item--active {% endif %}">
+    <a href="{{url}}">{{title}}</a>
+  </li>
+{% endmacro %}
+
 <nav class="sidebar">
   <h2>Documentation</h2>
-  <ul>
-    <li>Foo</li>
-    <li>Bar</li>
+  <ul class="sidebar__group">
+    {{sidebar_item('/airkit2/', 'Introduction')}}
+    {{sidebar_item('/airkit2/docs/components/', 'Components')}}
   </ul>
 
   <h2>Components</h2>
-  <ul>
-    <li><a href="/airkit2/inview/">InviewComponent</a></li>
-    <li><a href="/airkit2/lazyimage/">LazyImageComponent</a></li>
-    <li><a href="/airkit2/modal/">ModalButtonComponent</a></li>
-    <li><a href="/airkit2/ytmodal/">YTModalComponent</a></li>
+  <ul class="sidebar__group">
+    {{sidebar_item('/airkit2/inview/', 'InviewComponent')}}
+    {{sidebar_item('/airkit2/lazyimage/', 'LazyImageComponent')}}
+    {{sidebar_item('/airkit2/modal/', 'ModalButtonComponent')}}
+    {{sidebar_item('/airkit2/ytmodal/', 'YTModalComponent')}}
   </ul>
 
   <h2>SASS Modules</h2>
-  <ul>
-    <li><a href="/airkit2/breakpoints/">breakpoints</a></li>
+  <ul class="sidebar__group">
+    {{sidebar_item('/airkit2/breakpoints/', 'breakpoints')}}
   </ul>
 </nav>

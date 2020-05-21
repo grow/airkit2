@@ -2,12 +2,15 @@
 <script src="/airkit2/dist/js/{{path}}?c={{path|fingerprint}}"></script>
 {% endmacro %}
 
-{% macro source_code(path) %}
+{% macro source_code(path, replacements) %}
 {% set code %}{% include path %}{% endset %}
 {% set type = path.split('.')|last %}
 {% if type == 'sass' %}
   {% set type = 'css' %}
 {% endif %}
+{% for replacement in replacements %}
+  {% set code = code|replace(replacement[0], replacement[1]) %}
+{% endfor %}
 <pre><code class="{{type}}">{{code|replace("from '..", "from 'airkit2")}}</code></pre>
 {% endmacro %}
 

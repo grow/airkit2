@@ -1,5 +1,5 @@
-import Registry from '../component/registry';
-import YTModalComponent from '../ytmodal/ytmodalcomponent';
+import {Registry} from '..';
+import {YTModalComponent} from '../ytmodal';
 
 
 const app = new Registry();

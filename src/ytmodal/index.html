@@ -12,30 +12,35 @@
 
 {% block main %}
 <h1>YTModalComponent</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>
+  YTModalComponent can be attached to a button-like element to open a YouTube
+  video within a full-screen, blacked-out modal dialog.
+</p>
 
-<h2>LazyImageComponentOptions</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Option</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>modalPlayer</td>
-      <td>{YTModalPlayer}</td>
-      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
-      <td>null</td>
-    </tr>
-  </tbody>
-</table>
+<h2>YTModalComponentOptions</h2>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Option</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>modalPlayer</td>
+        <td>{YTModalPlayer}</td>
+        <td>The modal player object to use. If not specified, a global singleton player object will be used.</td>
+        <td>null</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <h2>Example</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<p>Press the button below to open a YouTube modal dialog.</p>
 
 {% set example %}
 <button class="ytmodal" data-youtube-id="Q0CbN8sfihY">Open YT Modal</button>
@@ -47,7 +52,10 @@
 <pre><code class="html">{{example.trim()}}</code></pre>
 
 <h3>SASS</h3>
-{{macros.source_code('ytmodal/ytmodal.example.sass')}}
+{% set replacements = [
+  ["@import 'ytmodal'", "@import 'airkit2/ytmodal/ytmodal'"]
+] %}
+{{macros.source_code('ytmodal/ytmodal.example.sass', replacements=replacements)}}
 
 <h3>JavaScript</h3>
 {{macros.source_code('ytmodal/ytmodal.example.js')}}

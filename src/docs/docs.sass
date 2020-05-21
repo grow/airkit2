@@ -1,46 +1,7 @@
+@import '../breakpoints/mixins';
+
+@import 'global'
+
 @import 'blocks/header'
 @import 'blocks/page'
-
-html,
-body
-  margin: 0
-  padding: 0
-
-body
-  color: #333
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-  font-size: 14px
-  line-height: 20px
-
-html
-  box-sizing: border-box
-*,
-*:before,
-*:after
-  box-sizing: inherit
-
-pre code
-  border: 1px solid #ccc
-  border-radius: 4px
-  padding: 10px
-  white-space: pre-wrap
-  word-break: break-word
-
-a
-  color: #428bca
-  text-decoration: none
-
-  &:hover,
-  &:focus
-    color: #2a6496
-    text-decoration: underline
-
-table
-  border-collapse: collapse
-
-  td,
-  th
-    padding: 7px
-    border: 1px solid #ccc
-    vertical-align: top
-    text-align: left
+@import 'blocks/sidebar'

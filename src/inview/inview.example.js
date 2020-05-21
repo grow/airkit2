@@ -1,5 +1,5 @@
-import Registry from '../component/registry';
-import InviewComponent from '../inview/inviewcomponent';
+import {Registry} from '..';
+import {InviewComponent} from '../inview';
 
 
 const app = new Registry();

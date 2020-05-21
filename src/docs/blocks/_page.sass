@@ -1,3 +1,5 @@
+@import ../../breakpoints/mixins
+
 .page
   max-width: 100%
   overflow-x: hidden
@@ -7,20 +9,26 @@
   background-color: #765285
   display: flex
   height: 64px
-  margin-bottom: 40px
 
 .page__wrap
-  display: flex
-  flex-wrap: nowrap
-  margin: 0 auto
-  max-width: 1200px
-  min-height: calc(100vh - 226px)
-  padding-bottom: 80px
-  width: 80%
+  +md-lt
+    padding: 40px 24px
+    position: relative
+  +md
+    display: flex
+    flex-wrap: nowrap
+    margin: 0 auto
+    max-width: 1200px
+    min-height: calc(100vh - 226px)
+    padding: 80px 0
+    width: 80%
 
 .page__sidebar
-  flex: 0 0 250px
-  width: 250px
+  +md-lt
+    display: none
+  +md
+    flex: 0 0 250px
+    width: 250px
 
 .page__main
   flex: 1

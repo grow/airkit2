@@ -75,7 +75,10 @@
 <pre><code class="html">{{example.trim()}}</code></pre>
 
 <h3>SASS</h3>
-{{macros.source_code('modal/modal.example.sass')}}
+{% set replacements = [
+  ["@import 'modal'", "@import 'airkit2/modal/modal'"]
+] %}
+{{macros.source_code('modal/modal.example.sass', replacements=replacements)}}
 
 <h3>JavaScript</h3>
 {{macros.source_code('modal/modal.example.js')}}

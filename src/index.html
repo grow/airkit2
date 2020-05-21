@@ -3,6 +3,43 @@
 {% block title %}Airkit2{% endblock %}
 
 {% block main %}
-<h1>Welcome to Airkit2</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h1>Introduction</h1>
+<p>Welcome to Airkit2! Airkit2 is a collection of JavaScript and SASS components designed to make life easier for the modern frontend developer.</p>
+<p>Airkit2's components are written in vanilla JavaScript (no third-party deps), aiming to be lightweight and performant. Components will decoroate elements as they enter the DOM, and similarly dispose themselves when they are removed.</p>
+
+<h2>Installation</h2>
+{% set install_code %}
+npm install grow/airkit2
+{% endset %}
+<pre><code class="bash">{{install_code.trim()}}</code></pre>
+
+<h2>Getting started</h2>
+
+{% set getstarted_code %}
+import {Registry} from 'airkit2';
+import {LazyImageComponent} from 'airkit2/lazyimage';
+
+
+// Create a new component registry, which handles decoration of elements as
+// they enter and leave the DOM.
+const app = new Registry();
+
+// Set options for a component. Each component can have its own set of
+// configurable options.
+const lazyimageOptions = {
+  inviewClass: 'lazyimage--visible',
+  loadedClass: 'lazyimage--loaded',
+};
+
+// Register the component and bind it to a specific CSS class. When an element
+// enters the DOM with that class, the component will be initialized on that
+// element.
+app.register('lazyimage', LazyImageComponent, lazyimageOptions);
+
+// Start the airkit2 app.
+document.addEventListener('DOMContentLoaded', () => {
+  app.run();
+});
+{% endset %}
+<pre><code class="js">{{getstarted_code.trim()}}</code></pre>
 {% endblock %}

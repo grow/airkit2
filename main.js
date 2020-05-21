@@ -48,11 +48,11 @@ function runDev(argv) {
     }
 
     console.log(`serving ${templatePath}`);
-    return res.render(templatePath);
+    return res.render(templatePath, {request: req});
   });
 
   app.use(function(req, res) {
-    res.status(404).render('404.html');
+    res.status(404).render('404.html', {request: req});
   });
 
   const port = argv.port;

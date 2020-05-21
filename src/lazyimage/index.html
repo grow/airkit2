@@ -29,7 +29,7 @@
 
 {% block main %}
 <h1>LazyImageComponent</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>LazyImageComponent loads an image into an element when it comes inview.</p>
 
 <h2>LazyImageComponentOptions</h2>
 <table>
@@ -45,20 +45,20 @@
     <tr>
       <td>inviewClass</td>
       <td>{string}</td>
-      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+      <td>CSS class applied when the element is visible.</td>
       <td>null</td>
     </tr>
     <tr>
       <td>loadedClass</td>
       <td>{string}</td>
-      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+      <td>CSS class applied when the image is loaded.</td>
       <td>null</td>
     </tr>
   </tbody>
 </table>
 
 <h2>Example</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<p>Scroll down to view the lazyimage.</p>
 <p>(scroll down)</p>
 
 {% set example %}
@@ -79,7 +79,7 @@
   <img class="lazyimage"
       style="display: none"
       lazyimage-src="https://lh3.googleusercontent.com/dmQfcAxbbvf-_tM_gKPX4z07wl2YqG3qwAoioszQFa4izxL66B7FGXE3qRvLuBFGW8zu16ya6EKmbUePU9Qj=pp-w{width}">
-      <div class="lazyimage"
+  <div class="lazyimage"
       style="display: none"
       lazyimage-background-image="https://lh3.googleusercontent.com/qbXuwPuwwfoETse9LsMRbxYDOt3iaiHZkoTGwMhDsgCsMgk-wYcWqDdzjckMwFdI8Ck9dfCM63k5vL1tWoKy=pp-w{width}"></div>
 </div>

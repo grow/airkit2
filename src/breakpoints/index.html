@@ -20,5 +20,8 @@
 <pre><code class="html">{{example.trim()}}</code></pre>
 
 <h3>SASS</h3>
-{{macros.source_code('breakpoints/breakpoints.example.sass')}}
+{% set replacements = [
+  ["@import 'mixins'", "@import 'airkit2/breakpoints/mixins'"]
+] %}
+{{macros.source_code('breakpoints/breakpoints.example.sass', replacements=replacements)}}
 {% endblock %}

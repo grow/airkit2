@@ -1,5 +1,5 @@
-import Registry from '../component/registry';
-import LazyImageComponent from '../lazyimage/lazyimagecomponent';
+import {Registry} from '..';
+import {LazyImageComponent} from '../lazyimage';
 
 
 const app = new Registry();

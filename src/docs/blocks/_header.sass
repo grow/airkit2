@@ -1,7 +1,12 @@
+@import ../../breakpoints/mixins
+
 .header
-  margin: 0 auto
-  max-width: 1200px
-  width: 80%
+  +md-lt
+    padding: 0 24px
+  +md
+    margin: 0 auto
+    max-width: 1200px
+    width: 80%
 
 .header a
   color: #fff
