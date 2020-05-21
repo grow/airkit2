@@ -1,1 +1,1 @@
-.foo{height:400px;width:400px;background-color:red}@media (min-width: 719px){.foo{background-color:green}}@media (min-width: 1293px){.foo{background-color:blue}}
+.foo{max-width:400px;position:relative;width:100%;background-color:red}.foo::before{content:'';display:block;padding-top:100%}@media (min-width: 719px){.foo{background-color:green}}@media (min-width: 1293px){.foo{background-color:blue}}

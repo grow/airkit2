@@ -1,8 +1,13 @@
 @import 'mixins'
 
 .foo
-  height: 400px
-  width: 400px
+  max-width: 400px
+  position: relative
+  width: 100%
+  &::before
+    content: ''
+    display: block
+    padding-top: 100%
 
   background-color: red
   +md

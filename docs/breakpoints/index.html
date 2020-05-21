@@ -10,7 +10,7 @@
 .hljs{display:block;background:#fafafa;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
 </style>
 <link rel="stylesheet" href="/airkit2/dist/css/docs/docs.min.css?c=21931d7d46cf4a86a4e24b87a2b12a3f">
-<link rel="stylesheet" href="/airkit2/dist/css/breakpoints/breakpoints.example.min.css?c=02287bfa22bd3765ea46e78684b921f8">
+<link rel="stylesheet" href="/airkit2/dist/css/breakpoints/breakpoints.example.min.css?c=b1ed4364be40caef3c70343a9c8816b6">
 <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
 </head>
@@ -66,8 +66,13 @@
 <pre><code class="css">@import &#39;airkit2/breakpoints/mixins&#39;
 
 .foo
-  height: 400px
-  width: 400px
+  max-width: 400px
+  position: relative
+  width: 100%
+  &amp;::before
+    content: &#39;&#39;
+    display: block
+    padding-top: 100%
 
   background-color: red
   +md

@@ -30,7 +30,7 @@ export class ImageLoader {
         resolve(src);
       }, {once: true});
       img.addEventListener('error', () => {
-        reject('failed to load image');
+        reject(new Error('failed to load image'));
       });
       // TODO(stevenle): handle failed image load.
       img.src = src;
