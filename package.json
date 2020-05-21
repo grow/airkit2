@@ -7,6 +7,15 @@
     "type": "git",
     "url": "https://github.com/grow/airkit2.git"
   },
+  "author": "Steven Le <stevenle08@gmail.com>",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "directories": {
+    "docs": "docs",
+    "lib": "lib"
+  },
   "devDependencies": {
     "@babel/core": "7.9.6",
     "@babel/preset-env": "7.9.6",
@@ -28,8 +37,10 @@
     "yargs": "^11.0.0"
   },
   "scripts": {
+    "prepare": "npm run build",
+    "build": "rm -rf lib && mkdir lib && node main.js build",
     "dev": "gulp dev & node main.js dev",
-    "docs": "gulp build && node main.js build",
+    "docs": "gulp build && node main.js docs",
     "lint": "eslint src/**/*.js"
   }
 }

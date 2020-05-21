@@ -12,6 +12,7 @@ const utils = require('./utils');
 const DIST_PATH = 'dist/';
 const STATIC_PATH = 'static/';
 const TEMPLATES_PATH = 'src/';
+const SRC_PATH = 'src/';
 
 const NUNJUCKS_LOADER = new nunjucks.FileSystemLoader(TEMPLATES_PATH, {
   watch: true,
@@ -62,10 +63,11 @@ function runDev(argv) {
 
 
 /**
- * Runs the `build` command. Builds the site and outputs to the /docs/ folder.
+ * Runs the `docs` command. Builds the docs site and outputs to the /docs/
+ * folder.
  * @param {Object} argv
  */
-function runBuild(argv) {
+function runDocs(argv) {
   const outdir = argv.out;
   console.log(`outputting site to ${outdir}`);
 
@@ -131,6 +133,47 @@ function runBuild(argv) {
 
 
 /**
+ * Runs the `build` command. Builds the docs site and outputs to the /docs/
+ * folder.
+ * @param {Object} argv
+ */
+function runBuild(argv) {
+  const outdir = argv.out;
+  console.log(`outputting site to ${outdir}`);
+
+  const docsPath = path.join(SRC_PATH, 'docs');
+
+  utils.listFiles(SRC_PATH)
+      .filter((filepath) => {
+        // Ignore the "docs" folder.
+        if (filepath.startsWith(docsPath)) {
+          return false;
+        }
+        if (filepath.endsWith('.js') && !filepath.endsWith('.example.js')) {
+          return true;
+        }
+        if (filepath.endsWith('.sass') && !filepath.endsWith('.example.sass')) {
+          return true;
+        }
+        return false;
+      }).forEach((filepath) => {
+        const relpath = filepath.slice(SRC_PATH.length);
+        const outpath = path.join(outdir, relpath);
+
+        const parentdir = path.dirname(outpath);
+        if (!fs.existsSync(parentdir)) {
+          utils.mkdirp(parentdir);
+        }
+
+        fs.copyFileSync(filepath, outpath);
+        console.log(`saved ${outpath}`);
+      });
+
+  process.exit(0);
+}
+
+
+/**
  * Nunjucks filter to normalizes HTML.
  * @param {string} html
  * @return {string}
@@ -166,10 +209,17 @@ require('yargs')
         'type': 'number',
       },
     }, runDev)
-    .command('build', 'builds the site', {
+    .command('docs', 'builds the site docs', {
       'out': {
         'alias': 'o',
         'default': 'docs/',
+        'type': 'string',
+      },
+    }, runDocs)
+    .command('build', 'builds the package', {
+      'out': {
+        'alias': 'o',
+        'default': 'lib/',
         'type': 'string',
       },
     }, runBuild)
