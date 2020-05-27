@@ -19,6 +19,9 @@ export class YTModalComponent extends Component {
 
     /** @type {?function(Event)} */
     this.clickHandler_ = null;
+
+    /** @type {?function(Event)} */
+    this.keyboardHandler_ = null;
   }
 
   /** @override */
@@ -29,6 +32,31 @@ export class YTModalComponent extends Component {
       this.modalPlayer_.play(this.videoId_);
     };
     this.element.addEventListener('click', this.clickHandler_);
+
+    this.initAriaControls_();
+  }
+
+  /**
+   * Adds aria attrs and keyboard controls.
+   * @private
+   */
+  initAriaControls_() {
+    // Add `tabindex="0"` and `role="button"` if they don't exist.
+    if (!this.element.getAttribute('tabindex')) {
+      this.element.setAttribute('tabindex', '0');
+    }
+    if (!this.element.getAttribute('role')) {
+      this.element.setAttribute('role', 'button');
+    }
+
+    // Add keyboard listener to trigger the modal when "enter" is hit.
+    this.keyboardHandler_ = (e) => {
+      if (e.key == 'Enter') {
+        e.preventDefault();
+        this.modalPlayer_.play(this.videoId_);
+      }
+    };
+    this.element.addEventListener('keydown', this.keyboardHandler_);
   }
 
   /** @override */
@@ -36,6 +64,10 @@ export class YTModalComponent extends Component {
     if (this.clickHandler_) {
       this.element.removeEventListener('click', this.clickHandler_);
       this.clickHandler_ = null;
+    }
+    if (this.keyboardHandler_) {
+      this.element.removeEventListener('keydown', this.keyboardHandler_);
+      this.keyboardHandler_ = null;
     }
     super.destroy();
   }
