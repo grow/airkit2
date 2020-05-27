@@ -9,7 +9,7 @@ docs:
 # Publishes airkit2 to npm registry.
 publish:
 	npm version patch
-	git push origin master
+	git push origin master --tags
 	npm publish
 
 .PHONY: publish
