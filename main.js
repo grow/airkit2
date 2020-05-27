@@ -149,6 +149,9 @@ function runBuild(argv) {
         if (filepath.startsWith(docsPath)) {
           return false;
         }
+        if (filepath.endsWith('.d.ts')) {
+          return true;
+        }
         if (filepath.endsWith('.js') && !filepath.endsWith('.example.js')) {
           return true;
         }
