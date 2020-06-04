@@ -106,6 +106,8 @@ export class YTModalPlayer {
   /** @private */
   initDom_() {
     const el = this.createDom_('div', 'ytmodal-player');
+    el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-modal', 'true');
     const closeEl = this.createDom_('div', 'ytmodal-player__x');
     el.appendChild(closeEl);
     el.appendChild(this.createDom_('div', 'ytmodal-player__player'));
@@ -132,11 +134,13 @@ export class YTModalPlayer {
     if (active) {
       this.keyboardListener_ = (e) => this.onKeyDown_(e);
       document.body.addEventListener('keydown', this.keyboardListener_);
+      document.body.classList.add('ak2-modal-open');
     } else {
       this.ytPlayer_.pauseVideo();
       if (this.keyboardListener_) {
         document.body.removeEventListener('keydown', this.keyboardListener_);
       }
+      document.body.classList.remove('ak2-modal-open');
     }
 
     // Use a delay separately on `--enabled` and `--visible` states so that
