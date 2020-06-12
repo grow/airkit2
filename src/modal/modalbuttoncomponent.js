@@ -214,8 +214,8 @@ export class ModalDialog {
    * Renders the dialog into the DOM in an unopened state.
    */
   render() {
-    const el = this.createDom_('div', 'modal');
-    const closeEl = this.createDom_('div', 'modal__x');
+    const el = this.createDom_('dialog', 'modal');
+    const closeEl = this.createDom_('button', 'modal__x');
     el.appendChild(closeEl);
     const contentEl = this.createDom_('div', 'modal__content');
     contentEl.appendChild(this.modalBodyEl_);

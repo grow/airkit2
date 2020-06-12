@@ -14,6 +14,12 @@ export class YTModalComponent extends Component {
     /** @private {YTModalPlayer} */
     this.modalPlayer_ = options.modalPlayer || YTModalPlayer.getInstance();
 
+    /** @type {boolean} */
+    this.useAppOnMobile_ = true;
+    if (options.useAppOnMobile != undefined) {
+      this.useAppOnMobile_ = options.useAppOnMobile;
+    }
+
     /** @private {string} */
     this.videoId_ = this.element.dataset.youtubeId;
 
@@ -183,7 +189,7 @@ export class YTModalPlayer {
    */
   play(videoId) {
     // On mobile, play directly in YouTube.
-    if (isMobile()) {
+    if (this.useAppOnMobile_ && isMobile()) {
       const mobileUrl = `https://m.youtube.com/watch?v=${videoId}`;
       window.location.href = mobileUrl;
       return;
