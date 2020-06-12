@@ -7,6 +7,8 @@ $modal-z-index: 2000 !default
   display: none
 
 .modal
+  border: 0
+  box-sizing: border-box
   display: none
   height: 100%
   left: 0
@@ -29,9 +31,11 @@ $modal-z-index: 2000 !default
 
 .modal__x
   align-items: center
+  appearance: none
   background: $modal-color-black
   border: 2px solid rgba(99, 96, 96, 0.6)
   border-radius: 50%
+  box-sizing: border-box
   color: $modal-color-white
   cursor: pointer
   display: flex
@@ -48,6 +52,9 @@ $modal-z-index: 2000 !default
   transition: all 0.3s
   width: $modal-button-height
   z-index: $modal-z-index + 3
+
+  &:focus
+    outline: none
 
   &:before
     content: "\00D7"
