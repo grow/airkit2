@@ -46,6 +46,18 @@ export class ModalButtonComponent extends Component {
      */
     this.enableHashHistory_ = options.enableHashHistory || false;
 
+    /**
+     * Callback function called when modal is opened.
+     * @type {function()}
+     */
+    this.onOpen_ = options.onOpen || null;
+
+    /**
+     * Callback function called when modal is closed.
+     * @type {function()}
+     */
+    this.onClose_ = options.onClose || null;
+
     this.modalDialog_ = null;
   }
 
@@ -112,6 +124,10 @@ export class ModalButtonComponent extends Component {
     }
 
     this.active_ = true;
+
+    if (this.onOpen_) {
+      this.onOpen_();
+    }
   }
 
   /** Closes the modal dialog. */
@@ -143,6 +159,10 @@ export class ModalButtonComponent extends Component {
     }
 
     this.active_ = false;
+
+    if (this.onClose_) {
+      this.onClose_();
+    }
   }
 
   getModalId() {

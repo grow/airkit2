@@ -10,10 +10,10 @@
 .hljs{display:block;background:#fafafa;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
 </style>
 <link rel="stylesheet" href="/airkit2/dist/css/docs/docs.min.css?c=21931d7d46cf4a86a4e24b87a2b12a3f">
-<link rel="stylesheet" href="/airkit2/dist/css/modal/modal.example.min.css?c=3638ff7e11b085e8c5f5ade27bafeb97">
+<link rel="stylesheet" href="/airkit2/dist/css/modal/modal.example.min.css?c=c1487f89c43b4e8d860587c6a62a8518">
 <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
-<script src="/airkit2/dist/js/modal/modal.example.min.js?c=b6b3c5af9a086260fb0186a946487d00"></script>
+<script src="/airkit2/dist/js/modal/modal.example.min.js?c=0502a497a1bf36991f74db792b611dd9"></script>
 </head>
 <body>
 <div class="page">
@@ -92,6 +92,22 @@ Attr name used to identify which element to grab the modal contents from. The fi
 <td>{boolean}</td>
 <td>
 If enabled, opening a modal dialog will push a hash url to html5 history. When opening a new page with a #hash in the url, the modal will automatically open.
+</td>
+<td><span style="white-space: nowrap">false</span></td>
+</tr>
+<tr>
+<td>onOpen</td>
+<td>{function}</td>
+<td>
+A callback function that's called when the modal is opened.
+</td>
+<td><span style="white-space: nowrap">false</span></td>
+</tr>
+<tr>
+<td>onClose</td>
+<td>{function}</td>
+<td>
+A callback function that's called when the modal is closed.
 </td>
 <td><span style="white-space: nowrap">false</span></td>
 </tr>
