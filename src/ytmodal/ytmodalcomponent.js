@@ -23,6 +23,9 @@ export class YTModalComponent extends Component {
     /** @private {string} */
     this.videoId_ = this.element.dataset.youtubeId;
 
+    /** @private {string} */
+    this.listId_ = this.element.dataset.youtubeListId;
+
     /** @type {?function(Event)} */
     this.clickHandler_ = null;
 
@@ -35,7 +38,7 @@ export class YTModalComponent extends Component {
     super.init();
     this.clickHandler_ = (e) => {
       e.preventDefault();
-      this.modalPlayer_.play(this.videoId_);
+      this.modalPlayer_.play(this.videoId_, this.listId_);
     };
     this.element.addEventListener('click', this.clickHandler_);
 
@@ -59,7 +62,7 @@ export class YTModalComponent extends Component {
     this.keyboardHandler_ = (e) => {
       if (e.key == 'Enter') {
         e.preventDefault();
-        this.modalPlayer_.play(this.videoId_);
+        this.modalPlayer_.play(this.videoId_, this.listId_);
       }
     };
     this.element.addEventListener('keydown', this.keyboardHandler_);
@@ -186,8 +189,9 @@ export class YTModalPlayer {
 
   /**
    * @param {string} videoId
+   * @param {?string} opt_listId
    */
-  play(videoId) {
+  play(videoId, opt_listId) {
     // On mobile, play directly in YouTube.
     if (this.useAppOnMobile_ && isMobile()) {
       const mobileUrl = `https://m.youtube.com/watch?v=${videoId}`;
@@ -210,6 +214,10 @@ export class YTModalPlayer {
           'iv_load_policy': 3,
         },
       };
+      if (opt_listId) {
+        options['playerVars']['listType'] = 'playlist';
+        options['playerVars']['list'] = opt_listId;
+      }
       const playerEl =
           this.element.getElementsByClassName('ytmodal-player__player')[0];
       this.ytPlayer_ = new YT.Player(playerEl, options);
