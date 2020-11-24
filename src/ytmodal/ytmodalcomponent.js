@@ -14,12 +14,6 @@ export class YTModalComponent extends Component {
     /** @private {YTModalPlayer} */
     this.modalPlayer_ = options.modalPlayer || YTModalPlayer.getInstance();
 
-    /** @type {boolean} */
-    this.useAppOnMobile_ = true;
-    if (options.useAppOnMobile != undefined) {
-      this.useAppOnMobile_ = options.useAppOnMobile;
-    }
-
     /** @private {string} */
     this.videoId_ = this.element.dataset.youtubeId;
 
@@ -31,6 +25,8 @@ export class YTModalComponent extends Component {
 
     /** @type {?function(Event)} */
     this.keyboardHandler_ = null;
+
+    this.modalPlayer_.init(options);
   }
 
   /** @override */
@@ -103,11 +99,24 @@ export class YTModalPlayer {
     /** @private {YT.Player} */
     this.ytPlayer_ = null;
 
-    this.init_();
+    /** @type {boolean} */
+    this.useAppOnMobile_ = true;
+
+    /** @type {boolean} */
+    this.openNewWindowMobile_ = false;
   }
 
-  /** @private */
-  init_() {
+  /** @public */
+  init(options) {
+
+    if (options.useAppOnMobile != undefined) {
+      this.useAppOnMobile_ = options.useAppOnMobile;
+    }
+
+    if (options.openNewWindowMobile != undefined) {
+      this.openNewWindowMobile_ = options.openNewWindowMobile;
+    }
+
     this.initDom_();
     this.initYouTubeApi_();
   }
@@ -195,7 +204,12 @@ export class YTModalPlayer {
     // On mobile, play directly in YouTube.
     if (this.useAppOnMobile_ && isMobile()) {
       const mobileUrl = `https://m.youtube.com/watch?v=${videoId}`;
-      window.location.href = mobileUrl;
+      if(this.openNewWindowMobile_) {
+        var win = window.open(mobileUrl, '_blank');
+        win.focus();
+      } else {
+        window.location.href = mobileUrl;
+      }
       return;
     }
 
