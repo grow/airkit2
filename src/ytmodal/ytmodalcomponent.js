@@ -214,29 +214,27 @@ export class YTModalPlayer {
     }
 
     if (this.ytPlayer_) {
-      this.ytPlayer_.loadVideoById(videoId, 0, 'large');
-    } else {
-      const options = {
-        'videoId': videoId,
-        'playerVars': {
-          'autohide': 1,
-          'autoplay': 1,
-          'fs': 1,
-          'modestbranding': 1,
-          'rel': 0,
-          'showinfo': 0,
-          'iv_load_policy': 3,
-        },
-      };
-      if (opt_listId) {
-        options['playerVars']['listType'] = 'playlist';
-        options['playerVars']['list'] = opt_listId;
-      }
-      const playerEl =
-          this.element.getElementsByClassName('ytmodal-player__player')[0];
-      this.ytPlayer_ = new YT.Player(playerEl, options);
+      this.ytPlayer_.destroy();
     }
-
+    const options = {
+      'videoId': videoId,
+      'playerVars': {
+        'autohide': 1,
+        'autoplay': 1,
+        'fs': 1,
+        'modestbranding': 1,
+        'rel': 0,
+        'showinfo': 0,
+        'iv_load_policy': 3,
+      },
+    };
+    if (opt_listId) {
+      options['playerVars']['listType'] = 'playlist';
+      options['playerVars']['list'] = opt_listId;
+    }
+    const playerEl =
+        this.element.getElementsByClassName('ytmodal-player__player')[0];
+    this.ytPlayer_ = new YT.Player(playerEl, options);
     this.setActive_(true);
   }
 
